@@ -1,0 +1,48 @@
+.BlackBlock {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    bottom: 0;
+    transition: all .5s;
+    animation: BlackBlockAppear .2s ease-in-out forwards;
+    z-index: 50;
+}
+
+.Sidebar {
+    background: var(--black);
+    color: var(--white);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 300px;
+    -webkit-box-shadow: 11px 11px 8px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 11px 11px 8px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 11px 11px 8px 0px rgba(0, 0, 0, 0.2);
+    transition: all .3s ease;
+    z-index: 100;
+}
+.MainList {
+    margin-top: 45px;
+}
+
+.MainList li{
+    width: 100%;
+    padding: 15px;
+    border-bottom: 1px solid rgba(83, 83, 83, 0.5);
+    cursor: pointer;
+}
+
+.Sidebar_Show {
+    transform: translateX(0);
+}
+
+.Sidebar_Hide {
+    transform: translateX(-310px);
+}
+
+@keyframes BlackBlockAppear {
+    from {background: rgba(255, 255, 255, 0);}
+    to {background: rgba(0, 0, 0, 0.562);}
+}
