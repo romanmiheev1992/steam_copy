@@ -29,7 +29,7 @@ export const Search  = ({...props}: SearchProps): JSX.Element => {
                  {
                     serachValue && searchList.map((item, i) => (
                         i < 10
-                        ?<div className={styles.GameBlock}>
+                        ?<div key={i} className={styles.GameBlock}>
                             <img src={item.photos.smallCard} />
                             <div>
                                 <span>{item.name}</span> 

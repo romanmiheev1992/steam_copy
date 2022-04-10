@@ -2,6 +2,7 @@ import axios from "axios";
 import { GetStaticProps } from "next";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { MainSlider, SalesSection, SortBlock } from "../components";
 import { links } from "../helpers/links";
 import { useSelectorHook } from "../hooks/useSelectorHook";
 import { Games, Menu } from "../interfaces/dataInterfase";
@@ -16,7 +17,6 @@ import { MenuListAction } from "../redux/types/menuListType";
   const {gamesList, menuList} = useSelectorHook(state => state) 
   const dispatch = useDispatch()
 
-  // console.log(menuList)
   useEffect(() => {
     dispatch({type: GameActions.GET_GAMES_CONTENT, payload: games})
     dispatch({type: MenuListAction.ADD_MENU_LIST, payload: menu})
@@ -24,6 +24,9 @@ import { MenuListAction } from "../redux/types/menuListType";
 
   return (
     <>
+      <MainSlider/>
+      <SalesSection/>
+      <SortBlock/>
     </>
   );
 

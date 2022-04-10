@@ -1,0 +1,133 @@
+.SortBlock {
+    width: 1000px;
+    
+    margin: 90px auto;
+    display: grid;
+    grid-template-areas: "label label photos"
+                         "games games photos"
+                         "games games photos"
+                         "games games photos"
+                         "games games photos"
+    ;
+
+}
+
+.SortBlockLabel {
+    width: 666px;
+    grid-area: label;
+}
+.SortBlockLabel ul {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    color: var(--white);
+
+}
+
+.SortBlockLabel ul li {
+    /* background: red; */
+   text-align: center;
+   padding: 3px 0;
+   cursor: pointer;
+}
+
+.SortBlockLabel ul li:hover {
+  
+    background-image: linear-gradient(0.25turn, #0d1f38da, #0d1f38da);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.sortActive {
+    background: var(--gray-black);
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.SortBlockGames {
+    background:var(--gray-black);
+    grid-area: games;
+    height: 500px;
+    background-image: linear-gradient(0.25turn, #0d1f38da, #0d1f38da);
+}
+
+.SortBlockPhotos {
+    background:#c7d5e0;
+    grid-area: photos;
+    width: 333px;
+}
+.GameBlock:first-child {
+    margin-top: 10px;
+}
+.GameBlock {
+    margin: 0px 0px 9px 10px;
+    height: 50px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.041);
+    color: var(--white);
+    font-size: 12px;
+    cursor: pointer;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 3fr 2fr;
+}
+
+.GameBlock:hover {
+    background:#c7d5e0;
+    color: var(--black);
+}
+
+.GameBlock img{
+    height: 50px;
+}
+
+.GameText {
+    display: grid;
+    margin-left: 10px;
+    align-content: center;
+}
+
+.GamePrice {
+    justify-self: end;
+    align-self: center;
+}
+
+.GamePrice span {
+    margin-right: 10px;
+}
+
+.GamePrice div{
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 2fr 2fr;
+    /* background: var(--black); */
+   
+}
+
+.GamePrice div span:first-child {
+    background: var(--green-sale);
+    padding: 0 3px;
+    justify-self: end;
+    color: var(--white)
+    
+}
+
+.GamePrice div span:nth-child(2) {
+    text-decoration: line-through;
+    justify-self: end;
+}
+.GamePrice div span:last-child {
+    justify-self: end;
+}
+
+.SortBlockPhotos {
+    display: grid;
+
+}
+
+.SortBlockPhotos img{
+    width: 300px;
+    justify-self: center;
+    align-self: center;
+}

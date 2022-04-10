@@ -50,11 +50,8 @@ export const MenuHeaderComponent = ({...props}: MenuHeaderComponentProps) => {
                             </li>
                           
                         </>
-                      
                     ))
-                  
                 }  
-                
             </ul>
             <Search/>
         </div>

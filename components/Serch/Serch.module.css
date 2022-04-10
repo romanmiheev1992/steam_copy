@@ -1,10 +1,21 @@
 .Search {
     align-self: center;
-    
+    margin-left: 30px;
+    z-index: 100;
 } 
 
 .Search input {
     outline: none;
+    height: 20px;
+    width: 150px;
+    transition: all .2s ease-in-out;
+    border-radius: 89px;
+    border: none;
+    padding-left: 13px;
+}
+
+.Search input:focus {
+    width: 200px;
 }
 
 .Search input:hover {
@@ -20,6 +31,7 @@
 
 .GameBlock {
     display: flex;
+    width: 300px;
     margin-top: 5px;
     cursor: pointer;
     opacity: .8;
@@ -28,9 +40,11 @@
     border-bottom: 1px solid rgba(82, 82, 82, 0.507);
     padding-bottom: 5px;
 }
+
 .GameBlock:hover{
     opacity: 1;
 }
+
 .GameBlock span {
     margin-left: 5px;
 }

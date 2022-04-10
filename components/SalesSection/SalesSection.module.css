@@ -1,0 +1,75 @@
+.SalesSection {
+    width: 1060px;
+    margin: 0 auto;
+    min-height: 100px;
+    color: var(--white);
+}
+.SalesSection p {
+    margin-left: 30px;
+}
+
+.SalesSectionField {
+    width: 999px;
+    height: 190px;
+    overflow: hidden;
+    box-shadow: 8px 8px 8px 1px rgb(0 0 0 / 20%);
+
+}
+
+.SalesSectionCarusel {
+    display: flex;
+    width: 2000px;
+    height: 200px;
+    transform: translateX(200px);
+    transition: transform .4s ease-in-out;
+}
+
+.SalesSectionBlock {
+    width: 334px;
+    height: 190px;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: grid;
+    margin-right: 2px;
+    cursor: pointer;
+    /* transition: all .3s ease-in-out; */
+}
+
+.SalesInfo {
+    justify-self: start;
+    align-self: end;
+    background: #1A9FFF;
+    width: 100%;
+    padding: 0px;
+    font-size: 11px;
+}
+
+.SalesInfo p{
+    margin-left: 10px;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 7fr 1fr 1fr 2fr;
+   
+}
+
+.SalesInfo p span:first-child {
+    background: var(--green-sale);
+    padding: 0 3px;
+    
+}
+
+.SalesInfo p span:nth-child(2) {
+    text-decoration: line-through;
+    margin: 0 10px;
+}
+
+.sliderWrapper {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 30px 1fr 30px;
+    
+}
+
+.sliderWrapper button{
+    align-self: center;
+}

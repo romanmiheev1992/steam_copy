@@ -3,7 +3,7 @@ body {
 	margin: 0;
 	padding: 0;
 	color: var(--black);
-	background: #F5F6F8;
+	background: var(--black-background);
 	font-family: "Noto Sans", sans-serif;
 }
 
@@ -26,7 +26,9 @@ ul {
 	--black: #171a21;
 	--white: white;
 	--blue-dark: #1b2838;
-
+	--black-background: #0E141B;
+	--green-sale: #4c6b22;
+	--gray-black: #2a475e;
 
 	--gray-light: #EBEBEB;
 	

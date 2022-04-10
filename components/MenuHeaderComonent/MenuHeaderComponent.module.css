@@ -1,7 +1,7 @@
 .MenuHeaderComponent {
     position: absolute;
     top: 90px;
-    width: 900px;
+    width: 1000px;
     background-image: linear-gradient(0.25turn, #2a5085, var(--blue-dark));
     -webkit-box-shadow: 8px 8px 8px 1px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 8px 8px 8px 1px rgba(0, 0, 0, 0.2);
@@ -14,23 +14,30 @@
 }
 
 .MenuHeaderComponent ul li {
-    padding: 10px 20px;
+    width: 180px;
+    padding: 10px 10px;
+    text-align: center;
     cursor: pointer;
+    font-size: 12px;
 }
 
 .MenuHeaderComponent ul li:hover {
-    background-image: linear-gradient(0.50turn, #6b90c0,  #13396b);
+    background-image: linear-gradient(0.50turn, #3c6caa,  #13396b);
+    color: var(--white);
 }
 
 .MenuItemsComponets{
     position: absolute;
-    width: 900px;
-    left: 0px;
-    top: 42px;
+    /* width: 100%; */
+    /* left: 0px; */
+    margin-left: -10px;
+    color: #fff;
+    top: 37px;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    /* justify-content: space-around; */
     font-size: 13px;
-    background-image: linear-gradient(0.25turn, #2a5085, var(--blue-dark));
+    background-image: linear-gradient(0.25turn, #203d66b6, #244779);
     -webkit-box-shadow: 8px 8px 8px 1px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 8px 8px 8px 1px rgba(0, 0, 0, 0.2);
     box-shadow: 8px 8px 8px 1px rgba(0, 0, 0, 0.2);
