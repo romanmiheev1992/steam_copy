@@ -5,18 +5,12 @@ import { useEffect, useState } from "react"
 import { Games } from "../../interfaces/dataInterfase"
 
 
+
 export const SortBlock = ({...props}: SortBlockProps): JSX.Element => {
-
-    const [games, setGames] = useState<Games[]>([])
-    const [photos, setPhotos] = useState<Games>(games[0])
-
-    const {gamesList} = useSelectorHook(state => state)
-
-    useEffect(() => {
-        setGames(gamesList.games.filter(game => game.bestSeller))
-        setPhotos(gamesList.games[0])
-    }, [])
     
+    const {gamesList} = useSelectorHook(state => state)
+    const [games, setGames] = useState<Games[]>(gamesList.games)
+    const [photos, setPhotos] = useState<Games>(games[0])
 
     const sortClick = (e) => {
 
@@ -31,21 +25,20 @@ export const SortBlock = ({...props}: SortBlockProps): JSX.Element => {
         }
     }
 
-    const onMouseEnter = (name:string) => {
+    const onMouseEnter = (name: string) => {
        {
-        games.map(game => {
-            if(game.name === name) {
-                setPhotos(game)
-            }
-        })
+            games.map(game => {
+                if(game.name === name) {
+                    setPhotos(game)
+                }
+            })
        }
-    
     }
 
     return (
-        <div className={styles.SortBlock}>
+        <div {...props} className={styles.SortBlock}>
             <div className={styles.SortBlockLabel}>
-                <ul onClick={(e) => sortClick(e)}>
+                <ul onClick={sortClick}>
                     <li>Лидеры продаж</li>
                     <li>Популярные новинки</li>
                     <li>Скидки</li>
@@ -53,8 +46,8 @@ export const SortBlock = ({...props}: SortBlockProps): JSX.Element => {
             </div>
             <div className={styles.SortBlockGames}>
                 {
-                    games && games.map((game, i) => (
-                        i < 8
+                    games && games.map((game: Games, i: number) => (
+                        i < 11
                         ?<div 
                             key={game.name}
                             className={styles.GameBlock}
@@ -80,13 +73,16 @@ export const SortBlock = ({...props}: SortBlockProps): JSX.Element => {
                         </div>
                         : null
                     ))
+                   
                 }
             </div>
             <div className={styles.SortBlockPhotos}>  
+                <p>{photos && photos.name}</p>
                 {
-                  photos && photos.photos.cardImageListBig.map((photo, i) => {
-                       if(i < 3) {
-                           return <img src={photo}/>
+                  photos && photos.photos.cardImageListBig.map((photo: string, i: number) => {
+                      
+                       if(i < 4) {
+                           return <img key={i} src={photo}/>
                        }
                    })
                 }

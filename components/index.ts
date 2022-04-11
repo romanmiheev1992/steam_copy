@@ -1,9 +1,11 @@
 export { Search } from './Serch/Serch'
 export { Button } from './Button/Button'
+export { SortBlock } from './SortBlock/SortBlock'
+export { MenuItem } from './MenuItem/MenuItem'
 export { SliderBord } from './SliderBord/SliderBord'
 export { MainSlider } from './MainSlider/MainSlider'
 export { MenuToggle } from './MenuToggle/MenuToggle'
-export { SortBlock } from './SortBlock/SortBlock'
+
 export { SalesSection } from './SalesSection/SalesSection'
 export { MenuComponent } from './MenuComponent/MenuComponent'
 export { MenuHeaderComponent } from './MenuHeaderComonent/MenuHeaderComponent'

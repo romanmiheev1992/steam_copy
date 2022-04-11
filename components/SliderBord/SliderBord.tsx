@@ -13,6 +13,7 @@ export const SliderBord = ({lengthList, numClick, num ,...props}: SliderBordProp
             {
                 lengthList.map((block: any, i: number): JSX.Element => (
                     <div
+                        key={i}
                         className={cn(styles.SliderBordBlock, {
                             [styles.active] : i === num
                         })}

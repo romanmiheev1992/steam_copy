@@ -9,6 +9,7 @@
                          "games games photos"
                          "games games photos"
     ;
+    box-shadow: 11px 11px 10px 0px rgb(0 0 0 / 20%);
 
 }
 
@@ -47,7 +48,8 @@
 .SortBlockGames {
     background:var(--gray-black);
     grid-area: games;
-    height: 500px;
+    height: 660px;
+    width: 700px;
     background-image: linear-gradient(0.25turn, #0d1f38da, #0d1f38da);
 }
 
@@ -76,6 +78,10 @@
     color: var(--black);
 }
 
+.GameBlock:hover span:nth-child(2) {
+    color: black;
+}
+
 .GameBlock img{
     height: 50px;
 }
@@ -84,6 +90,12 @@
     display: grid;
     margin-left: 10px;
     align-content: center;
+}
+
+.GameText span:nth-child(2) {
+    font-size: 10px;
+    color:rgba(255, 255, 255, 0.459);
+    margin-top: 4px;
 }
 
 .GamePrice {
@@ -101,9 +113,7 @@
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 1fr 2fr 2fr;
-    /* background: var(--black); */
-   
-}
+} 
 
 .GamePrice div span:first-child {
     background: var(--green-sale);
@@ -119,15 +129,22 @@
 }
 .GamePrice div span:last-child {
     justify-self: end;
-}
+} 
 
 .SortBlockPhotos {
     display: grid;
+    width: 300px;
+}
 
+.SortBlockPhotos p {
+    margin-left: 15px;
 }
 
 .SortBlockPhotos img{
-    width: 300px;
+    width: 265px;
     justify-self: center;
     align-self: center;
+}
+.SortBlockPhotos img:last-child {
+    margin-bottom: 15px;
 }

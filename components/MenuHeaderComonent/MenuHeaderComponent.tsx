@@ -36,20 +36,18 @@ export const MenuHeaderComponent = ({...props}: MenuHeaderComponentProps) => {
         >
             <ul>
                 {
-                    menuList.menuList.map(menuItem => (
-                        <>
-                            <li
-                              onMouseEnter={(e) => onMouseEnter(e, menuItem)} 
-                              onMouseLeave={onMouseleave} 
-                            >{menuItem.name}
-                               {
-                                  value === menuItem.name
-                                  ? menuItemsComponets(menuItem)
-                                  : null
-                              }
-                            </li>
-                          
-                        </>
+                    menuList.menuList.map((menuItem, i) => (
+                        <li
+                            key={i}
+                            onMouseEnter={(e) => onMouseEnter(e, menuItem)} 
+                            onMouseLeave={onMouseleave} 
+                        >{menuItem.name}
+                            {
+                                value === menuItem.name
+                                ? menuItemsComponets(menuItem)
+                                : null
+                            }
+                        </li>
                     ))
                 }  
             </ul>

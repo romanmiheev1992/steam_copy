@@ -6,6 +6,7 @@ import { MenuToggle } from '../../components'
 import { MenuAction } from '../../redux/types/menuType'
 import { useSelectorHook } from '../../hooks/useSelectorHook'
 import { MenuComponent } from '../../components'
+import { MenuItem } from '../../components'
 
 
 export const Sidebar = ({...props}: SidebarProps): JSX.Element => {
@@ -14,10 +15,6 @@ export const Sidebar = ({...props}: SidebarProps): JSX.Element => {
 
     const blackBlock = () => <div onClick={() => dispatch({type: MenuAction.HIDE_MENU})} className={styles.BlackBlock}></div>
 
-    const onClick = (e) => {
-        dispatch({type: MenuAction.LIST_TOGGLE, payload: e.target.outerText})
-    }
-       
     return (
         <>
             <div 
@@ -31,16 +28,7 @@ export const Sidebar = ({...props}: SidebarProps): JSX.Element => {
                 <ul className={styles.MainList}>
                     {
                         menuList.menuList && menuList.menuList.map(menuItem => (
-                            <>
-                                <li 
-                                key={menuItem.name}
-                                onClick={(e) => onClick(e)} 
-                                >{menuItem.name.toUpperCase()}</li>
-                                {
-                                    <MenuComponent toggle={menuToggle} list={menuItem}/>
-                                }
-                            </>
-                            
+                            <MenuItem key={menuItem.name} list={menuItem}/> 
                         ))
                     }   
                 </ul>

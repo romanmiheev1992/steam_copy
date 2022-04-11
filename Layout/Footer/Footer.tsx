@@ -8,7 +8,6 @@ export const Footer = ({...props}: FooterProps): JSX.Element => {
             {...props}
             className={styles.Footer}
         >
-        footer
         </div>
     )
 }
