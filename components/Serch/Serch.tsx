@@ -8,7 +8,7 @@ export const Search  = ({...props}: SearchProps): JSX.Element => {
     const [serachValue, useSearchValue] = useState<string>('')
     const {gamesList} = useSelectorHook(state => state)
 
-    const searchList = gamesList.games.filter(game => {
+    const searchList = gamesList.games&& gamesList.games.filter(game => {
         return game.name.toLowerCase().includes(serachValue.toLowerCase())
     })
 

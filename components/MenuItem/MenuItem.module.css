@@ -15,8 +15,6 @@
     transition: all .3s ease-in-out;
 }
 
-
-
 .MenuComponent {
   max-height: 0;
   overflow: hidden;
@@ -68,50 +66,3 @@
     from {background:#192533; }
     to { background: var(--black);}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* .HeadComponent {
-    padding: 10px 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.055);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.055);
-    cursor: pointer;
-}
-
-.MenuComponent {
-    margin-left:  40px;
-    transition: height .3s ease-in-out;
-    background: var(--black);
-    background: red;
-    z-index: -10;
-    transform: translateY(-100px);
-}
-
-.MenuComponent li {
-    padding: 3px;
-    cursor: pointer;
-}
-
-.open {
-    animation: menuOpen .3s ease-in-out forwards;
-    height: auto;
-}
-
-.listItem {
-    z-index: 0;
-    transform: translateY(0px);
-}
- */

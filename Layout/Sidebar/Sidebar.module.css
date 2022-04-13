@@ -27,13 +27,6 @@
     margin-top: 55px;
 }
 
-/* .MainList li{
-    width: 100%;
-    padding: 15px;
-    border-bottom: 1px solid rgba(83, 83, 83, 0.5);
-    cursor: pointer;
-} */
-
 .Sidebar_Show {
     transform: translateX(0);
 }

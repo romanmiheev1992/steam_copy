@@ -7,6 +7,8 @@
     -moz-box-shadow: 8px 8px 8px 1px rgba(0, 0, 0, 0.2);
     box-shadow: 8px 8px 8px 1px rgba(0, 0, 0, 0.2);
     display: flex;
+    transition: all .3s ease-in-out;
+    z-index: -10;
 }
 
 .MenuHeaderComponent ul {
@@ -28,20 +30,25 @@
 
 .MenuItemsComponets{
     position: absolute;
-    /* width: 100%; */
-    /* left: 0px; */
     margin-left: -10px;
     color: #fff;
     top: 37px;
     display: flex;
     flex-direction: column;
-    /* justify-content: space-around; */
     font-size: 13px;
     background-image: linear-gradient(0.25turn, #203d66b6, #244779);
     -webkit-box-shadow: 8px 8px 8px 1px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 8px 8px 8px 1px rgba(0, 0, 0, 0.2);
     box-shadow: 8px 8px 8px 1px rgba(0, 0, 0, 0.2);
     animation: menuItemAppear .4s ease-in-out forwards ;
+}
+
+.headerHide {
+    top: 10px;
+}
+
+.headerShow {
+    top: 100px;
 }
 
 @keyframes menuItemAppear {

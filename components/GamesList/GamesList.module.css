@@ -1,0 +1,15 @@
+.GameList {
+    color: var(--white);
+    width: 800px;
+    margin: 150px auto 0 auto;
+}
+
+.GameItem {
+    height: 250px;
+    margin-bottom: 10px;
+}
+
+.GameItem video {
+    height: 100%;
+}
+

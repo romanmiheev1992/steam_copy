@@ -12,6 +12,10 @@ export const SortBlock = ({...props}: SortBlockProps): JSX.Element => {
     const [games, setGames] = useState<Games[]>(gamesList.games)
     const [photos, setPhotos] = useState<Games>(games[0])
 
+    useEffect(() => {
+        setGames(gamesList.games)
+    }, [gamesList])
+
     const sortClick = (e) => {
 
         if(e.target.outerText === 'Лидеры продаж') {
@@ -80,7 +84,6 @@ export const SortBlock = ({...props}: SortBlockProps): JSX.Element => {
                 <p>{photos && photos.name}</p>
                 {
                   photos && photos.photos.cardImageListBig.map((photo: string, i: number) => {
-                      
                        if(i < 4) {
                            return <img key={i} src={photo}/>
                        }
