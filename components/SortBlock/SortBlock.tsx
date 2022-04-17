@@ -3,6 +3,7 @@ import styles from './SortBlock.module.css'
 import { useSelectorHook } from "../../hooks/useSelectorHook"
 import { useEffect, useState } from "react"
 import { Games } from "../../interfaces/dataInterfase"
+import Link from "next/link"
 
 
 
@@ -52,29 +53,31 @@ export const SortBlock = ({...props}: SortBlockProps): JSX.Element => {
                 {
                     games && games.map((game: Games, i: number) => (
                         i < 11
-                        ?<div 
-                            key={game.name}
-                            className={styles.GameBlock}
-                            onMouseEnter={() => onMouseEnter(game.name)}
-                         >
-                            <img src={game.photos.smallCard} />
-                            <div className={styles.GameText} >
-                                <span>{game.name}</span> 
-                                <span>{game.genre}</span> 
+                        ?
+                        <Link key={game.name} href={`/games/${game.alias}`}>
+                            <div 
+                                className={styles.GameBlock}
+                                onMouseEnter={() => onMouseEnter(game.name)}
+                            >
+                                <img src={game.photos.smallCard} />
+                                <div className={styles.GameText} >
+                                    <span>{game.name}</span> 
+                                    <span>{game.genre}</span> 
+                                </div>
+                                <div className={styles.GamePrice} >
+                                    {
+                                        game.sales.status
+                                        ?  
+                                            <div>
+                                                <span>{game.sales.value}%</span>
+                                                <span>{game.price}руб.</span>
+                                                <span>{game.price -  Math.round((game.price / 100) * game.sales.value)} руб.</span>
+                                            </div>
+                                        :  <span>{game.price} руб.</span> 
+                                    }
+                                </div>
                             </div>
-                            <div className={styles.GamePrice} >
-                                {
-                                    game.sales.status
-                                    ?  
-                                        <div>
-                                            <span>{game.sales.value}%</span>
-                                            <span>{game.price}руб.</span>
-                                            <span>{game.price -  Math.round((game.price / 100) * game.sales.value)} руб.</span>
-                                        </div>
-                                    :  <span>{game.price} руб.</span> 
-                                }
-                            </div>
-                        </div>
+                        </Link>
                         : null
                     ))
                    

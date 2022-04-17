@@ -65,11 +65,13 @@
 .GameItemPriceSale span:first-child {
     background: var(--green-sale);
     color: var(--white);
+   
     padding: 3px;
 }
 
 .GameItemPriceSale span:nth-child(2) {
     margin: 0 10px;
+    text-decoration: line-through;
 }
 
 .active {

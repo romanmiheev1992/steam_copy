@@ -3,6 +3,7 @@ import styles from './SalesSection.module.css'
 import { useSelectorHook } from "../../hooks/useSelectorHook";
 import { useState } from "react";
 import { Button } from "../Button/Button";
+import Link from "next/link";
 export const SalesSection = ({...props}: SalesSectionProps): JSX.Element => {
 
     const {gamesList} = useSelectorHook(state => state)
@@ -42,23 +43,24 @@ export const SalesSection = ({...props}: SalesSectionProps): JSX.Element => {
                     >
                         {
                             salesGames.map(game => (
-                                <div
-                                    key={game.alias}
-                                    className={styles.SalesSectionBlock}
-                                    style={{backgroundImage: `url(${game.photos.cardLabel})`}}
-                                >
+                                <Link key={game.alias} href={`games/${game.alias}`}>
                                     <div
-                                        className={styles.SalesInfo}
+                                        className={styles.SalesSectionBlock}
+                                        style={{backgroundImage: `url(${game.photos.cardLabel})`}}
                                     >
-                                        <p>{game.name} 
-                                            <span>{game.sales.value}%</span>
-                                            <span>{game.price}руб.</span>
-                                            <span>{game.price -  Math.round((game.price / 100) * game.sales.value)} руб.</span>
-                                        </p> 
+                                        <div
+                                            className={styles.SalesInfo}
+                                        >
+                                            <p>{game.name} 
+                                                <span>{game.sales.value}%</span>
+                                                <span>{game.price}руб.</span>
+                                                <span>{game.price -  Math.round((game.price / 100) * game.sales.value)} руб.</span>
+                                            </p> 
 
+                                        </div>
+                                        
                                     </div>
-                                    
-                                </div>
+                                </Link>
                             ))
                         }   
                     </div>

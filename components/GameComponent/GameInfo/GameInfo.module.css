@@ -1,0 +1,31 @@
+.GameInfo {
+    width: 300px;
+    margin-left: 20px;
+    color: rgba(255, 255, 255, 0.651);
+}
+
+.GameInfo img {
+    width: 300px;
+    
+}
+
+.Info p{
+    color: #67c1f5;
+    line-height: 12px;
+}
+
+.InfoBlock {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 100px 1fr;
+}
+
+.GameInfo div {
+    font-size: 12px;
+}
+
+.InfoText p{
+    color: rgba(255, 255, 255, 0.274);
+    line-height: 12px;
+}
+

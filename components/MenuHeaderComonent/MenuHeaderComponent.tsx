@@ -30,36 +30,28 @@ export const MenuHeaderComponent = ({className, ...props}: MenuHeaderComponentPr
                 {
                     props.name === 'Жанры'
                     ? props.block.map((item: MenuBlock)  => (
-                       
-                        <Link key={item.alias} href={`/genre/${item.alias}`}><li key={item.name}>{item.name}</li></Link> 
-                       
+                    <Link key={item.alias} href={`/genre/${item.alias}`}><li key={item.name}>{item.name}</li></Link> 
                     ))
                     : null
                 }
                 {
                     props.name === 'Новое и примечательное'
                     ? props.block.map((item: MenuBlock)  => (
-                       
-                        <Link key={item.alias} href={`/newpop/${item.alias}`}><li key={item.name}>{item.name}</li></Link> 
-                       
+                        <Link key={item.alias} href={`/popular/${item.alias}`}><li key={item.name}>{item.name}</li></Link> 
                     ))
                     : null
                 }
                 {
                     props.name === 'Ваш магазин'
                     ? props.block.map((item: MenuBlock)  => (
-                       
                         <Link key={item.alias} href={`/${item.alias}`}><li key={item.name}>{item.name}</li></Link> 
-                       
                     ))
                     : null
                 }
                 {
                     props.name === 'Регистрация'
                     ? props.block.map((item: MenuBlock)  => (
-                       
                         <Link key={item.alias} href={`/${item.alias}`}><li key={item.name}>{item.name}</li></Link> 
-                       
                     ))
                     : null
                 }

@@ -25,7 +25,7 @@ export interface Games {
     date: GamesDate,
     video: string,
     photos: GamePhotos,
-    setting: GameSetting,
+    settings: GameSetting,
     discription: GameDiscription,
     systemRequirements: GameSystemRequirements
 }
@@ -64,7 +64,7 @@ export interface GameDiscription {
     text: string
 }
 
-export interface GameSystemRequirements {
+export interface Requirements {
     os: string,
     prosessor: string,
     ram: number,
@@ -72,4 +72,10 @@ export interface GameSystemRequirements {
     directX: string,
     hardDisk: number,
     soundCard: string
+}
+
+export interface GameSystemRequirements {
+    min: Requirements,
+    recomended: Requirements,
+    
 }

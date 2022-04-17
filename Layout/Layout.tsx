@@ -16,7 +16,7 @@ export const Layout = ({children}: LayoutProps): JSX.Element => {
             <div>
                 {children}
             </div>
-            <Footer/>
+            {/* <Footer/> */}
         </div>
     )
 }

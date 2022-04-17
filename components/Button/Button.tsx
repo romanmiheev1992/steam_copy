@@ -3,7 +3,7 @@ import cn from 'classnames'
 import Arrow from './icons/arrow.svg'
 import styles from './Button.module.css'
 
-export const Button = ({type, ...props}: ButtonProps): JSX.Element => {
+export const Button = ({type, children, ...props}: ButtonProps): JSX.Element => {
     
     return (
         <button 
@@ -11,10 +11,17 @@ export const Button = ({type, ...props}: ButtonProps): JSX.Element => {
         className={cn(styles.Button, {
             [styles.SliderRightButton]: type === 'slider_right',
             [styles.SliderLeftButton]: type === 'slider_left',
+            [styles.SmallSliderRightButton]: type === 'small_slider_right',
+            [styles.SmallSliderLeftButton]: type === 'small_slider_left',
+            [styles.PrimaryButton]: type === 'primary',
         })}
         >
-
-            <Arrow/>
+            {
+                type === 'slider_right' || type === 'slider_left' || type === 'small_slider_right' || type === 'small_slider_left'
+                ?<Arrow/>
+                : children 
+            }
+           
         </button>
     )
 }

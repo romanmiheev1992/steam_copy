@@ -1,4 +1,19 @@
 .Slider {
     width: 600px;
+    overflow: hidden;
+}
+
+.Slider img {
     height: 337px;
+    margin-right: 5px;
+    animation: imageAppearense .3s ease-in-out forwards;
+}
+
+.Slider video {
+    height: 337px;
+}
+
+@keyframes imageAppearense {
+    from {opacity: 0;}
+    to {opacity: 1;}
 }

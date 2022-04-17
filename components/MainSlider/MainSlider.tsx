@@ -5,6 +5,7 @@ import { getTime } from "date-fns";
 import { useEffect, useState } from "react";
 import { Button } from "../Button/Button";
 import { SliderBord } from "../SliderBord/SliderBord";
+import Link from "next/link";
 
 export const MainSlider = ({...props}: MainSliderProps): JSX.Element => {
     
@@ -53,7 +54,9 @@ export const MainSlider = ({...props}: MainSliderProps): JSX.Element => {
                 {
                     recomendedList.map((game, i) => (
                         slideNum === i
-                        ? <div key={game.alias} className={styles.MainPosterBlock}>
+                        ?
+                        <Link key={i} href={`games/${game.alias}`}>
+                         <div className={styles.MainPosterBlock}>
                             <div className={styles.MainPoster}>
                                 {
                                     imageNum
@@ -90,6 +93,7 @@ export const MainSlider = ({...props}: MainSliderProps): JSX.Element => {
                             </div>
                             </div>
                         </div>
+                        </Link>
                         : null
                   ))    
                 }

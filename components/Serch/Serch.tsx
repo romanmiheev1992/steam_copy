@@ -2,6 +2,7 @@ import { useSelectorHook } from "../../hooks/useSelectorHook";
 import { SearchProps } from "./Serch.props";
 import styles from './Serch.module.css'
 import { useState } from "react";
+import Link from "next/link";
 
 
 export const Search  = ({...props}: SearchProps): JSX.Element => {
@@ -29,14 +30,17 @@ export const Search  = ({...props}: SearchProps): JSX.Element => {
                  {
                     serachValue && searchList.map((item, i) => (
                         i < 10
-                        ?<div key={i} className={styles.GameBlock}>
-                            <img src={item.photos.smallCard} />
-                            <div>
-                                <span>{item.name}</span> 
-                                <span>{item.price} руб.</span> 
-                            </div>
+                        ?
+                        <Link key={item.alias} href={`/games/${item.alias}`}>
+                            <div  className={styles.GameBlock}>
+                                <img src={item.photos.smallCard} />
+                                <div>
+                                    <span>{item.name}</span> 
+                                    <span>{item.price} руб.</span> 
+                                </div>
 
-                        </div>
+                            </div>
+                        </Link>
                         : null
                     ))
                 }
