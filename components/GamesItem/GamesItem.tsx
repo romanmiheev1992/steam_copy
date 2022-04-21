@@ -8,13 +8,15 @@ import Link from 'next/link'
 import styles from './GamesItem.module.css'
 
 import cn from 'classnames'
+import { WatchedAction } from "../../redux/types/watchedTypes"
+import { format } from "date-fns"
+import { addWatched } from "../../helpers/functions"
 export const GamesItem = ({game, ...props}: GamesItemProps): JSX.Element => {
-
+    const dispatch = useDispatch()
     const {gamesList, menuList} = useSelectorHook(state => state) 
     const [onFocus, setOnFocus] = useState<boolean>(false)
     const router = useRouter()
     const [activeGenre, setActiveGenre] = useState<string>()
-
 
     return (
         <>
@@ -27,6 +29,7 @@ export const GamesItem = ({game, ...props}: GamesItemProps): JSX.Element => {
                 })}
                 onMouseEnter={() => setOnFocus(true)}
                 onMouseLeave={() => setOnFocus(false)}
+                onClick={() => addWatched(game)}
                 >
                     <div className={styles.GameItemImage}>
                         {

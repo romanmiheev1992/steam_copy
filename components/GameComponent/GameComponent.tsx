@@ -11,13 +11,19 @@ import { GameInfo } from "./GameInfo/GameInfo"
 import { Price } from "./Price/Price"
 import { GameDescritption } from "./GameDescritption/GameDescritption"
 import { GameSetting } from "./GameSetting/GameSetting"
+import { useDispatch } from "react-redux"
+import { WatchedAction } from "../../redux/types/watchedTypes"
+import { SortBlock } from "../SortBlock/SortBlock"
 
 export const GameComponent = ({...props}: GameComponentProps): JSX.Element => {
+
     const {gamesList} = useSelectorHook(state => state)
     const [sliderCounter, setSliderCounter] = useState(0)
     const [currentGame, setCurrentGame] = useState<Games>(gamesList.games[0])
 
     const router = useRouter()
+
+ 
 
     useEffect(() => {
         gamesList.games && gamesList.games.map(game => (
@@ -26,8 +32,8 @@ export const GameComponent = ({...props}: GameComponentProps): JSX.Element => {
              : null
           ))
           setSliderCounter(0)
-          
     }, [gamesList])
+
 
     const onClickButtonRight = () => {
         if(sliderCounter >= currentGame.photos.cardImageListSmall.length) {
@@ -52,23 +58,23 @@ export const GameComponent = ({...props}: GameComponentProps): JSX.Element => {
                 currentGame
                 ? 
                 <>
-                <p>{currentGame.name}</p>
+                    <p>{currentGame.name}</p>
 
-                <Slider className={styles.SliderSection} photos={currentGame} num={sliderCounter}/>
+                    <Slider className={styles.SliderSection} photos={currentGame} num={sliderCounter}/>
 
-                <div key={currentGame.alias} className={styles.SmellSliderWrapper}>
-                    <div className={styles.SmallSliderButtonLeft}><Button type='small_slider_left' onClick={() => onClickButtonLeft()}></Button></div>
-                    <SliderSmall photos={currentGame} setNum={setSliderCounter}  num={sliderCounter}/>
-                    <div className={styles.SmallSliderButtonRight}><Button type='small_slider_right' onClick={() => onClickButtonRight()}></Button></div>
-                </div>
+                    <div key={currentGame.alias} className={styles.SmellSliderWrapper}>
+                        <div className={styles.SmallSliderButtonLeft}><Button type='small_slider_left' onClick={() => onClickButtonLeft()}></Button></div>
+                        <SliderSmall photos={currentGame} setNum={setSliderCounter}  num={sliderCounter}/>
+                        <div className={styles.SmallSliderButtonRight}><Button type='small_slider_right' onClick={() => onClickButtonRight()}></Button></div>
+                    </div>
 
-                <div className={styles.GameComponentInfoSection}>
-                    <GameInfo game={currentGame} />
-                </div>
+                    <div className={styles.GameComponentInfoSection}>
+                        <GameInfo game={currentGame} />
+                    </div>
 
-                <Price game={currentGame}/>
-                <GameDescritption game={currentGame}/>
-                <GameSetting game={currentGame}/>
+                    <Price game={currentGame}/>
+                    <GameDescritption game={currentGame}/>
+                    <GameSetting game={currentGame}/>
                 </>
                 : null
             }

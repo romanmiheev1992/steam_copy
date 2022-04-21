@@ -14,6 +14,7 @@ export const Button = ({type, children, ...props}: ButtonProps): JSX.Element => 
             [styles.SmallSliderRightButton]: type === 'small_slider_right',
             [styles.SmallSliderLeftButton]: type === 'small_slider_left',
             [styles.PrimaryButton]: type === 'primary',
+            [styles.SubmitButton]: type === 'submit',
         })}
         >
             {

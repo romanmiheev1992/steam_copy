@@ -79,3 +79,13 @@ export interface GameSystemRequirements {
     recomended: Requirements,
     
 }
+
+export interface StatusType {
+    min: Requirements,
+    recomended: Requirements,
+    
+}
+
+export interface formStatusType {
+    status: number,
+}

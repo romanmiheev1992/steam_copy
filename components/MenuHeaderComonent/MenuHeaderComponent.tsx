@@ -10,7 +10,7 @@ import cn from 'classnames'
 
 export const MenuHeaderComponent = ({className, ...props}: MenuHeaderComponentProps) => {
     const [value, useValue] = useState<string>('')
-    const {menuList} = useSelectorHook(state => state)
+    const {menuList, userData} = useSelectorHook(state => state)
     const [scrollTop, setScrollTop] = useState<number>(0)
 
     useEffect(() => {
@@ -51,7 +51,7 @@ export const MenuHeaderComponent = ({className, ...props}: MenuHeaderComponentPr
                 {
                     props.name === 'Регистрация'
                     ? props.block.map((item: MenuBlock)  => (
-                        <Link key={item.alias} href={`/${item.alias}`}><li key={item.name}>{item.name}</li></Link> 
+                        <Link key={item.alias} href={`/${item.alias}`}><li key={item.name}>{userData.status ? "Личный кабинет" : item.name}</li></Link> 
                     ))
                     : null
                 }

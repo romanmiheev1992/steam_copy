@@ -4,8 +4,12 @@ import { useSelectorHook } from "../../hooks/useSelectorHook";
 import { useState } from "react";
 import { Button } from "../Button/Button";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { WatchedAction } from "../../redux/types/watchedTypes";
+import { addWatched } from "../../helpers/functions";
 export const SalesSection = ({...props}: SalesSectionProps): JSX.Element => {
 
+    const dispatch = useDispatch()
     const {gamesList} = useSelectorHook(state => state)
     const [margin, setMargin] = useState<number>(0)
     const salesGames = gamesList.games.filter(game => game.sales.status)
@@ -45,6 +49,7 @@ export const SalesSection = ({...props}: SalesSectionProps): JSX.Element => {
                             salesGames.map(game => (
                                 <Link key={game.alias} href={`games/${game.alias}`}>
                                     <div
+                                        onClick={() => addWatched(game)}
                                         className={styles.SalesSectionBlock}
                                         style={{backgroundImage: `url(${game.photos.cardLabel})`}}
                                     >

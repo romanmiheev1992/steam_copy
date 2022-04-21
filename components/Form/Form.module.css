@@ -1,0 +1,21 @@
+.Form {
+    width: 400px;
+    display: grid;
+    grid-template-rows: repeat(3, 70px);
+    justify-content: center;
+    align-content: center;
+    grid-area: form;
+    transition: all .3s ease-in-out;
+}
+
+.Form button {
+    align-self: start;
+}
+
+.hide {
+    opacity: .5;
+}
+
+.regPosition {
+    transform: translateX(-800px);
+}

@@ -9,8 +9,6 @@ import { withLayout } from "../Layout/Layout";
 import { GameActions } from "../redux/types/gamesType";
 import { MenuListAction } from "../redux/types/menuListType";
 
-
-
  function Home({menu, games}: HomeProps): JSX.Element {
   const dispatch = useDispatch()
 
@@ -18,6 +16,7 @@ import { MenuListAction } from "../redux/types/menuListType";
     dispatch({type: GameActions.GET_GAMES_CONTENT, payload: games})
     dispatch({type: MenuListAction.ADD_MENU_LIST, payload: menu})
   }, [])
+
 
   return (
     <>

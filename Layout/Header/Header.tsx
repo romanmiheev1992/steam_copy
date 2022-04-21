@@ -32,7 +32,7 @@ export const Header = ({...props}: HeaderProps): JSX.Element => {
                 [styles.headHide]: scrollTop > 100 
             })}>
                 <span><Steam/></span> 
-                <h3>STEAM</h3>
+                <h3>GAMER</h3>
             </div>
             <MenuHeaderComponent/>
         </div>

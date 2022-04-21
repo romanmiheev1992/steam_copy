@@ -38,17 +38,16 @@ export const GamesList = ({...props}: GamesListProps): JSX.Element => {
     return (
         <div className={styles.GameList}>
             {
-               gamesList.games && gamesList.games.map((game: Games, i: number) => (
+                gamesList.games && gamesList.games.map((game: Games, i: number) => (
                     game.genre === activeGenre
                     ?
                     <GamesItem 
-                    key={game.alias} 
-                    game={game}
+                        key={game.alias} 
+                        game={game}
                     />
                     : null
                 ))
             }
-            
         </div>
     )
 }

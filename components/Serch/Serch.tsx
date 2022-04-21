@@ -3,12 +3,17 @@ import { SearchProps } from "./Serch.props";
 import styles from './Serch.module.css'
 import { useState } from "react";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { WatchedAction } from "../../redux/types/watchedTypes";
+import { format } from "date-fns";
+import { Games } from "../../interfaces/dataInterfase";
+import { addWatched } from "../../helpers/functions";
 
 
 export const Search  = ({...props}: SearchProps): JSX.Element => {
     const [serachValue, useSearchValue] = useState<string>('')
     const {gamesList} = useSelectorHook(state => state)
-
+    const dispatch = useDispatch()
     const searchList = gamesList.games&& gamesList.games.filter(game => {
         return game.name.toLowerCase().includes(serachValue.toLowerCase())
     })
@@ -16,6 +21,7 @@ export const Search  = ({...props}: SearchProps): JSX.Element => {
     const onChange = (e) => {
         useSearchValue(e.target.value)
     }
+
 
     return (
         <div 
@@ -28,15 +34,18 @@ export const Search  = ({...props}: SearchProps): JSX.Element => {
             />
             <div className={styles.SeachResult}>
                  {
-                    serachValue && searchList.map((item, i) => (
+                    serachValue && searchList.map((game, i) => (
                         i < 10
                         ?
-                        <Link key={item.alias} href={`/games/${item.alias}`}>
-                            <div  className={styles.GameBlock}>
-                                <img src={item.photos.smallCard} />
+                        <Link key={game.alias} href={`/games/${game.alias}`}>
+                            <div  
+                                className={styles.GameBlock}
+                                onClick={() => addWatched(game)}
+                            >
+                                <img src={game.photos.smallCard} />
                                 <div>
-                                    <span>{item.name}</span> 
-                                    <span>{item.price} руб.</span> 
+                                    <span>{game.name}</span> 
+                                    <span>{game.price} руб.</span> 
                                 </div>
 
                             </div>

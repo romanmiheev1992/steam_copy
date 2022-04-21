@@ -1,8 +1,34 @@
 import { PriceProps } from "./Price.props"
 import styles from './Price.module.css'
 import { Button } from "../../Button/Button"
+import { addGameBacket } from "../../../helpers/functions"
+import { useRouter } from "next/dist/client/router"
+import { useSelectorHook } from "../../../hooks/useSelectorHook"
+import { useEffect, useState } from "react"
 
 export const Price = ({game, className ,...props}: PriceProps): JSX.Element => {
+
+    const {gameBasket} = useSelectorHook(state => state)
+    const [chosen, setChosen] = useState<boolean>(false)
+    const router = useRouter()
+
+    useEffect(() => {
+            setChosen(false) 
+            gameBasket.games && gameBasket.games.map(item => {
+                if(localStorage.getItem('name') && game.alias === item.alias) {
+                    setChosen(true)
+                }
+            })
+    })
+      
+    const onClick = () => {
+            addGameBacket(game)
+            router.push('/sign')
+    }
+
+    const regRoute = () => {
+        router.push('/sign')
+    }
 
     return (
         <div className={styles.PriceSection}>
@@ -17,7 +43,11 @@ export const Price = ({game, className ,...props}: PriceProps): JSX.Element => {
                       </div> 
                     : <div>{game.price} руб.</div>
                 }  
-                <Button type="primary">В корзину</Button> 
+                {
+                    chosen
+                    ? <Button onClick={() => regRoute()} type="primary">В корзинe</Button> 
+                    : <Button onClick={() => onClick()} type="primary">В корзину</Button> 
+                }
             </div>
         </div>
     )

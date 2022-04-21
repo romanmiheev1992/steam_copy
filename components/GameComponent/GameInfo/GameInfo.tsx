@@ -16,7 +16,7 @@ export const GameInfo = ({game, ...props}: GameInfoProps) => {
                     <p>Издатель:</p>
                 </div> 
                 <div className={styles.Info}>
-                    <p>{game.date.day}.{
+                    <p>{game.date.day} {
 
                     game.date.month === 1
                         ? ' янв '

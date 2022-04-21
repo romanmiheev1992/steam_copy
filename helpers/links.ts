@@ -1,5 +1,4 @@
-
-export const mainLink: string = 'https://cinema-next-js-9033b-default-rtdb.firebaseio.com/-N-CpOsdoOGo6-rbnYkH/'
+export const mainLink: string = 'https://gamer-5f202-default-rtdb.firebaseio.com/-N09ZH2Qq0pWlB6VQGtF/'
 
 export const links = {
     games: `${mainLink}games.json`,

@@ -1,11 +1,15 @@
 import { MainSliderProps } from "./MainSlider.props";
 import styles from './MainSlider.module.css'
 import { useSelectorHook } from "../../hooks/useSelectorHook";
-import { getTime } from "date-fns";
+import { format, getTime } from "date-fns";
 import { useEffect, useState } from "react";
 import { Button } from "../Button/Button";
 import { SliderBord } from "../SliderBord/SliderBord";
 import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { WatchedAction } from "../../redux/types/watchedTypes";
+import { Games } from "../../interfaces/dataInterfase";
+import { addWatched } from "../../helpers/functions";
 
 export const MainSlider = ({...props}: MainSliderProps): JSX.Element => {
     
@@ -56,7 +60,11 @@ export const MainSlider = ({...props}: MainSliderProps): JSX.Element => {
                         slideNum === i
                         ?
                         <Link key={i} href={`games/${game.alias}`}>
-                         <div className={styles.MainPosterBlock}>
+                         <div 
+                         className={styles.MainPosterBlock}
+                        //  onClick={() => dispatch({type: WatchedAction.ADD_WATCHED_LIST, payload: [game]})}   
+                        onClick={() => addWatched(game)}   
+                        >
                             <div className={styles.MainPoster}>
                                 {
                                     imageNum

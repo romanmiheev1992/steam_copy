@@ -1,0 +1,43 @@
+.PersonalArea {
+    width: 1000px;
+    margin: 0 auto;
+    color: var(--white);
+    
+}
+
+.PersonalAreaBlocks {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 600px 400px;
+}
+
+.PersonalArea h3 {
+    padding-top: 120px;
+    color: var(--white)
+}
+
+.GameBasketBlock {
+    width: 600px;
+    height: 100px;
+    margin-bottom: 5px;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 200px 200px 100px 100px;
+}
+
+.GameBasketBlock img {
+    width: 200px;
+    align-self: center;
+}
+
+.GameBasketBlock p {
+    color: rgba(255, 255, 255, 0.993);
+    font-size: 13px;
+    align-self: center;
+    margin-left: 5px;
+}
+
+.GameBasketBlock button{
+    justify-self: center;
+    align-self: center;
+}

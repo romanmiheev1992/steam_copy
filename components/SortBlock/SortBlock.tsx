@@ -4,11 +4,14 @@ import { useSelectorHook } from "../../hooks/useSelectorHook"
 import { useEffect, useState } from "react"
 import { Games } from "../../interfaces/dataInterfase"
 import Link from "next/link"
+import { useDispatch } from "react-redux"
+import { WatchedAction } from "../../redux/types/watchedTypes"
+import { addWatched } from "../../helpers/functions"
 
 
 
 export const SortBlock = ({...props}: SortBlockProps): JSX.Element => {
-    
+    const dispatch = useDispatch()
     const {gamesList} = useSelectorHook(state => state)
     const [games, setGames] = useState<Games[]>(gamesList.games)
     const [photos, setPhotos] = useState<Games>(games[0])
@@ -58,6 +61,7 @@ export const SortBlock = ({...props}: SortBlockProps): JSX.Element => {
                             <div 
                                 className={styles.GameBlock}
                                 onMouseEnter={() => onMouseEnter(game.name)}
+                                onClick={() => addWatched(game)}
                             >
                                 <img src={game.photos.smallCard} />
                                 <div className={styles.GameText} >

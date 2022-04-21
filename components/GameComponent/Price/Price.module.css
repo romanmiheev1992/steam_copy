@@ -41,13 +41,29 @@
     color: var(--white);
 }
 
+.GameItemPriceSale {
+    display: grid;
+    grid-template-columns: 60px 60px 100px;
+}
+
 .GameItemPriceSale span:first-child {
     background: var(--green-sale);
-    padding: 2px;
+    padding: 4px;
+    margin-left: 3px;
+    justify-self: start;
+    align-self: center;
+
 }
 
 .GameItemPriceSale span:nth-child(2) {
     font-size: 12px;
     text-decoration: line-through;
-    padding: 0 10px;
+    align-self: center;
+    justify-self: start;
+}
+
+.GameItemPriceSale span:nth-child(3) {
+    align-self: center;
+    justify-self: start;
+    margin-left: 5px;
 }
