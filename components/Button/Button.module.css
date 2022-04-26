@@ -98,4 +98,15 @@
     background: linear-gradient( to right, #47bfff 5%, #1a44c2 60%);
     box-shadow: 8px 8px 8px 1px rgb(0 0 0 / 20%);
 }
+.SubmitButton:hover {
+    background: linear-gradient( to right, #47bfff 7%, #2148be 60%);
+}
 
+
+
+
+@media screen and (max-width: 1060px) {
+
+   
+
+} 

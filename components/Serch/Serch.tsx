@@ -3,23 +3,35 @@ import { SearchProps } from "./Serch.props";
 import styles from './Serch.module.css'
 import { useState } from "react";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
-import { WatchedAction } from "../../redux/types/watchedTypes";
-import { format } from "date-fns";
-import { Games } from "../../interfaces/dataInterfase";
 import { addWatched } from "../../helpers/functions";
-
+import { motion } from 'framer-motion'
 
 export const Search  = ({...props}: SearchProps): JSX.Element => {
     const [serachValue, useSearchValue] = useState<string>('')
     const {gamesList} = useSelectorHook(state => state)
-    const dispatch = useDispatch()
     const searchList = gamesList.games&& gamesList.games.filter(game => {
         return game.name.toLowerCase().includes(serachValue.toLowerCase())
     })
 
     const onChange = (e) => {
         useSearchValue(e.target.value)
+    }
+
+    const variants = {
+        show: {
+            opacity: 1,
+            height: 'auto',
+            transition: {
+                duration: 0.4,
+            }
+        },
+        hide: {
+            transition: {
+                duration: 1,
+            },
+            height: 0,
+            opacity: 0,
+        }
     }
 
 
@@ -32,13 +44,18 @@ export const Search  = ({...props}: SearchProps): JSX.Element => {
                 placeholder="поиск игр..." 
                 onChange={onChange}
             />
-            <div className={styles.SeachResult}>
+            <motion.div 
+                                variants={variants}
+                                initial={'hide'}
+                                animate={serachValue ? 'show' : 'hide'}
+                                 className={styles.SeachResult}>
                  {
                     serachValue && searchList.map((game, i) => (
                         i < 10
                         ?
                         <Link key={game.alias} href={`/games/${game.alias}`}>
-                            <div  
+                            <motion.div
+                                layout
                                 className={styles.GameBlock}
                                 onClick={() => addWatched(game)}
                             >
@@ -48,12 +65,12 @@ export const Search  = ({...props}: SearchProps): JSX.Element => {
                                     <span>{game.price} руб.</span> 
                                 </div>
 
-                            </div>
+                            </motion.div>
                         </Link>
                         : null
                     ))
                 }
-            </div>
+            </motion.div>
            
         </div>
     )

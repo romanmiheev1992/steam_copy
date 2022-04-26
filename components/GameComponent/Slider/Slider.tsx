@@ -19,7 +19,6 @@ export const Slider = ({photos, className, num, ...props}: SliderProps): JSX.Ele
                      key={photo}
                      />
                      :null
-                   
                 ))
             }
             

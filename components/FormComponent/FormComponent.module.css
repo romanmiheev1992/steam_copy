@@ -1,31 +1,25 @@
 .FormComponent {
+    position: relative;
     background-image: url('https://store.akamai.steamstatic.com/public/shared/images/joinsteam/acct_creation_bg.jpg');
     width: 100%;
-    height: 100vh;
+    min-height: 120%;
     background-repeat: no-repeat;
     background-size: cover;
-    position: relative;
-}
-
-.FormBlock {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 800px;
-    height: 300px;
-    display: grid;
-    grid-template-rows: 1fr;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-areas: 'img form';
-    transition: all .3s ease-in-out;
-    
 }
 
 .imgBlock {
-    align-self: center;
+    width: 350px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
     display: grid;
+    text-align: center;
+    overflow: hidden;
+    z-index: 20;
+}
 
+.imgBlock img {
+    width: 350px;
 }
 .imgBlock p{
     color: rgba(255, 255, 255, 0.397);
@@ -37,14 +31,5 @@
     justify-self: center;
     -webkit-box-shadow: 8px 8px 8px 1px rgb(0 0 0 / 20%);
     box-shadow: 8px 8px 8px 1px rgb(0 0 0 / 20%);
-}
-
-.FormBlock img {
-    width: 400px;
-    z-index: 40;
-}
-
-.regPosition {
-   transform: translate(20px, -50%);
 }
 

@@ -1,28 +1,33 @@
-import { useRouter } from "next/dist/client/router"
-import { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
-import { useSelectorHook } from "../../hooks/useSelectorHook"
-import { Games } from "../../interfaces/dataInterfase"
+import {  useState } from "react"
 import { GamesItemProps } from "./GamesItem.props"
 import Link from 'next/link'
 import styles from './GamesItem.module.css'
-
 import cn from 'classnames'
-import { WatchedAction } from "../../redux/types/watchedTypes"
-import { format } from "date-fns"
 import { addWatched } from "../../helpers/functions"
+import { motion } from 'framer-motion'
+
 export const GamesItem = ({game, ...props}: GamesItemProps): JSX.Element => {
-    const dispatch = useDispatch()
-    const {gamesList, menuList} = useSelectorHook(state => state) 
+
     const [onFocus, setOnFocus] = useState<boolean>(false)
-    const router = useRouter()
-    const [activeGenre, setActiveGenre] = useState<string>()
+
+    const variants = {
+        hide: {
+            opacity: 0,
+            
+        },
+        show : {
+            opacity: 1, 
+        }
+    }
 
     return (
         <>
             <Link href={`/games/${game.alias}`}>
-                <div
-                {...props}
+                <motion.div
+                layout
+                variants={variants}
+                initial={'hide'}
+                animate={'show'}
                 key={game.alias} 
                 className={cn(styles.GameItem, {
                     [styles.active]: onFocus
@@ -46,15 +51,15 @@ export const GamesItem = ({game, ...props}: GamesItemProps): JSX.Element => {
                             game.sales.status
                             ?  <p className={styles.GameItemPriceSale}>
                                     <span>{game.sales.value}%</span>
-                                    <span>{game.price}руб.</span>
-                                    <span>{game.price -  Math.round((game.price / 100) * game.sales.value)} руб.</span>
+                                    <span>{game.sales.oldPrice}руб.</span>
+                                    <span>{game.price} руб.</span>
                                 </p> 
                             : <p className={styles.GameItemPrice}>{game.price} руб.</p> 
                         }
                     
                         <p></p>
                     </div>
-                </div>
+                </motion.div>
             </Link>   
         </>  
     )

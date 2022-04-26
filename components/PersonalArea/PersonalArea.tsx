@@ -6,19 +6,21 @@ import { Button } from "../Button/Button"
 import { useRouter } from "next/dist/client/router"
 import { useDispatch } from "react-redux"
 import { GameBasketAction } from "../../redux/types/gameBasketType"
-import { useEffect, useState } from "react"
-import { Games } from "../../interfaces/dataInterfase"
 import { UserDataAction } from "../../redux/types/userDataType"
+import { motion, AnimatePresence } from 'framer-motion'
+import Sad from './icon/sad.svg'
+
 
 export const PersonalArea = ({...props}: PersonalAreaProps): JSX.Element => {
     const {userData, gameBasket} = useSelectorHook(state => state)
     const router = useRouter()
     const dispatch = useDispatch()
 
+    
+
     const deleteGame = (alias: string) => {
         dispatch({type: GameBasketAction.FILTER_GAMES, payload: alias})
     }
-
 
     const exit = () => {
         dispatch({type: UserDataAction.CLEAR_USER})
@@ -28,18 +30,22 @@ export const PersonalArea = ({...props}: PersonalAreaProps): JSX.Element => {
     }
 
     return (
-        <div className={styles.PersonalArea} {...props}>
+        <motion.div layout className={styles.PersonalArea}>
             <h3>Личный кабинет</h3>
             <p>Пользователь: {userData.email}</p>
             <h4>Корзина</h4>
             <div className={styles.PersonalAreaBlocks}>
                 <div>
-                    {
+                    {   gameBasket.games.length
+                        ?
                         gameBasket.games && gameBasket.games.map(game => (
-                            <div 
+
+                            <motion.div 
+                                layout
                                 key={game.alias}
                                 className={styles.GameBasketBlock}
                             >
+
                                 <img src={game.photos.smallCard}/>
                                 <p> {game.name}</p>
                                 {
@@ -48,16 +54,27 @@ export const PersonalArea = ({...props}: PersonalAreaProps): JSX.Element => {
                                     :  <p>{game.price} руб.</p>
                                 }
                                 <Button onClick={() => deleteGame(game.alias)} type='primary'>Удалить</Button>
-                            </div>
-                            
+
+                                
+                            </motion.div>
+
+
+                        
+                           
+                           
                         ))
+                        : <div className={styles.Enpty}>
+                            <Sad/>
+                            <p>Корзина пуста</p>
+                            </div> 
                     }
                 </div>
                 <CalcBlock/>    
             </div>
+            <div className={styles.PersonalAreaButton}>
+                <Button type='primary' onClick={() => exit()}>Выход</Button>
+            </div>
             
-            <Button type='primary' onClick={() => exit()}>Выход</Button>
-            
-        </div>
+        </motion.div>
     )
 }

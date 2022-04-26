@@ -6,8 +6,6 @@ import { useEffect, useState } from "react";
 import { Button } from "../Button/Button";
 import { SliderBord } from "../SliderBord/SliderBord";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
-import { WatchedAction } from "../../redux/types/watchedTypes";
 import { Games } from "../../interfaces/dataInterfase";
 import { addWatched } from "../../helpers/functions";
 
@@ -17,6 +15,12 @@ export const MainSlider = ({...props}: MainSliderProps): JSX.Element => {
     const [imageNum, setImageNum] = useState<number | null>(null)
     const [slideNum, setSlideNum] = useState<number>(0)
     const recomendedList = gamesList.games.filter(game => game.recomended)
+
+    const variants = { 
+        show : {
+            opacity: 1
+        }
+    }
 
     const onMouseEnter = (e) => {
         setImageNum(e._targetInst.key)
@@ -56,52 +60,51 @@ export const MainSlider = ({...props}: MainSliderProps): JSX.Element => {
                     onClick={onClickPrev}
                 />
                 {
-                    recomendedList.map((game, i) => (
+                    recomendedList.map((game: Games, i: number) => (
                         slideNum === i
                         ?
-                        <Link key={i} href={`games/${game.alias}`}>
-                         <div 
-                         className={styles.MainPosterBlock}
-                        //  onClick={() => dispatch({type: WatchedAction.ADD_WATCHED_LIST, payload: [game]})}   
-                        onClick={() => addWatched(game)}   
-                        >
-                            <div className={styles.MainPoster}>
-                                {
-                                    imageNum
-                                    ? <img src={game.photos.cardImageListBig[imageNum]}/>
-                                    : <img src={game.photos.mainPoster}/>
-                                }
-                                
-                            </div>
-                            <div className={styles.MainLabel}>
-                            <p>{game.name}</p>
-                            <div className={styles.MainLabelPhotos}>
-                                    {
-                                        game.photos.cardImageListBig.map((photo, i) => (
-                                            i <= 3 
-                                            ? <img 
-                                                key={i} 
-                                                src={photo}
-                                                onMouseEnter={onMouseEnter}
-                                                onMouseLeave={onMouseLeave}
-                                                />
-                                            : null
-                                        ))
-                                    }
-                            </div>
-                            <div className={styles.MainLabelPrice}>
-                                    {
-                                        game.sales.value
-                                        ? <p className={styles.MainLabelPriceSale}> 
-                                                <span>{game.sales.value}%</span>  
-                                                <span>{game.price} руб.</span> {game.price -  Math.round((game.price / 100) * game.sales.value)} руб.
-                                            </p>
-                                        : <p>{game.price} руб.</p>
-                                    }
-                            </div>
-                            </div>
-                        </div>
-                        </Link>
+                            <Link key={i} href={`games/${game.alias}`}>
+                                <div 
+                                className={styles.MainPosterBlock}
+                                onClick={() => addWatched(game)}   
+                                >
+                                    <div className={styles.MainPoster}>
+                                        {
+                                            imageNum
+                                            ? <img src={game.photos.cardImageListBig[imageNum]}/>
+                                            : <img src={game.photos.mainPoster}/>
+                                        }
+                                        
+                                    </div>
+                                    <div className={styles.MainLabel}>
+                                    <p>{game.name}</p>
+                                    <div className={styles.MainLabelPhotos}>
+                                            {
+                                                game.photos.cardImageListBig.map((photo, i) => (
+                                                    i <= 3 
+                                                    ? <img 
+                                                        key={i} 
+                                                        src={photo}
+                                                        onMouseEnter={onMouseEnter}
+                                                        onMouseLeave={onMouseLeave}
+                                                        />
+                                                    : null
+                                                ))
+                                            }
+                                    </div>
+                                    <div className={styles.MainLabelPrice}>
+                                            {
+                                                game.sales.value
+                                                ? <p className={styles.MainLabelPriceSale}> 
+                                                        <span>{game.sales.value}%</span>  
+                                                        <span>{game.price} руб.</span> {game.price -  Math.round((game.price / 100) * game.sales.value)} руб.
+                                                    </p>
+                                                : <p>{game.price} руб.</p>
+                                            }
+                                    </div>
+                                    </div>
+                                </div>
+                            </Link>
                         : null
                   ))    
                 }
@@ -111,10 +114,7 @@ export const MainSlider = ({...props}: MainSliderProps): JSX.Element => {
                 />
                   </>
             </div>
-
             <SliderBord lengthList={recomendedList} numClick={setSlideNum} num={slideNum}/>
-           
-            
         </div>
     )
 }

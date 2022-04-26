@@ -32,7 +32,8 @@ export interface Games {
 
 export interface GamesSales {
     status: boolean,
-    value: null | number
+    value:  number,
+    oldPrice: number
 }
 
 export interface GamesDate {

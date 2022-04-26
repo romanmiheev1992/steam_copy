@@ -21,7 +21,7 @@ import { MenuListAction } from "../redux/types/menuListType";
   return (
     <>
       <MainSlider/>
-      <SalesSection/>
+      <SalesSection />
       <SortBlock/>
     </>
   );

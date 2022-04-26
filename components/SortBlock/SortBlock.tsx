@@ -5,7 +5,7 @@ import { useEffect, useState } from "react"
 import { Games } from "../../interfaces/dataInterfase"
 import Link from "next/link"
 import { useDispatch } from "react-redux"
-import { WatchedAction } from "../../redux/types/watchedTypes"
+import { motion } from 'framer-motion'
 import { addWatched } from "../../helpers/functions"
 
 
@@ -18,6 +18,7 @@ export const SortBlock = ({...props}: SortBlockProps): JSX.Element => {
 
     useEffect(() => {
         setGames(gamesList.games)
+        setPhotos(gamesList.games[0])
     }, [gamesList])
 
     const sortClick = (e) => {
@@ -58,7 +59,8 @@ export const SortBlock = ({...props}: SortBlockProps): JSX.Element => {
                         i < 11
                         ?
                         <Link key={game.name} href={`/games/${game.alias}`}>
-                            <div 
+                            <motion.div 
+                            layout
                                 className={styles.GameBlock}
                                 onMouseEnter={() => onMouseEnter(game.name)}
                                 onClick={() => addWatched(game)}
@@ -80,7 +82,7 @@ export const SortBlock = ({...props}: SortBlockProps): JSX.Element => {
                                         :  <span>{game.price} руб.</span> 
                                     }
                                 </div>
-                            </div>
+                            </motion.div>
                         </Link>
                         : null
                     ))
@@ -92,7 +94,7 @@ export const SortBlock = ({...props}: SortBlockProps): JSX.Element => {
                 {
                   photos && photos.photos.cardImageListBig.map((photo: string, i: number) => {
                        if(i < 4) {
-                           return <img key={i} src={photo}/>
+                           return <img key={i} src={photo}></img>
                        }
                    })
                 }

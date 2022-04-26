@@ -5,24 +5,34 @@ import { SidebarProps } from './Sidebar.props'
 import { MenuToggle } from '../../components'
 import { MenuAction } from '../../redux/types/menuType'
 import { useSelectorHook } from '../../hooks/useSelectorHook'
-import { MenuComponent } from '../../components'
 import { MenuItem } from '../../components'
+import { motion } from 'framer-motion'
 
 
 export const Sidebar = ({...props}: SidebarProps): JSX.Element => {
     const {menuToggle, menuList} = useSelectorHook(state => state)
     const dispatch = useDispatch()
 
+
+    const variants = {
+        show: {
+            x: 0,
+        },
+        hide: {
+            x: -300
+        }
+
+    }
+
     const blackBlock = () => <div onClick={() => dispatch({type: MenuAction.HIDE_MENU})} className={styles.BlackBlock}></div>
 
     return (
         <>
-            <div 
-                {...props}
-                className={cn(styles.Sidebar, {
-                    [styles.Sidebar_Show]: menuToggle.toggleMenu === true,
-                    [styles.Sidebar_Hide]: menuToggle.toggleMenu === false,
-                })}
+            <motion.div 
+                className={styles.Sidebar}
+                initial={"hide"}
+                variants={variants}
+                animate={ menuToggle.toggleMenu ? "show" : "hide"}
             >
                 <MenuToggle type='close'/>
                 <ul className={styles.MainList}>
@@ -32,7 +42,7 @@ export const Sidebar = ({...props}: SidebarProps): JSX.Element => {
                         ))
                     }   
                 </ul>
-            </div>
+            </motion.div>
             {
                 menuToggle.toggleMenu
                 ? blackBlock()

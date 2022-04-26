@@ -3,7 +3,7 @@
     width: 1000px;
     position: relative;
     display: grid;
-    grid-template-rows: 60px 1fr 90px 100px 100px ;
+    grid-template-rows: 60px 1fr 90px 100px 200px 200px 100px minmax(100px 300px) ;
     grid-template-columns: 600px 400px;
     grid-template-areas: "header header "
                         "slider info"

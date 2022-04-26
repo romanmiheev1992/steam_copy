@@ -13,14 +13,15 @@ export const Price = ({game, className ,...props}: PriceProps): JSX.Element => {
     const router = useRouter()
 
     useEffect(() => {
-            setChosen(false) 
-            gameBasket.games && gameBasket.games.map(item => {
-                if(localStorage.getItem('name') && game.alias === item.alias) {
-                    setChosen(true)
-                }
-            })
+        setChosen(false) 
+        gameBasket.games && gameBasket.games.map(item => {
+            if(localStorage.getItem('name') && game.alias === item.alias) {
+                setChosen(true)
+            }
+        })
     })
       
+    
     const onClick = () => {
             addGameBacket(game)
             router.push('/sign')
@@ -31,15 +32,15 @@ export const Price = ({game, className ,...props}: PriceProps): JSX.Element => {
     }
 
     return (
-        <div className={styles.PriceSection}>
+        <div className={styles.PriceSection} {...props}>
             <div>Купить {game.name}</div>
             <div className={styles.PriceSectionBlock}>
                 {
                     game.sales.status
                     ? <div className={styles.GameItemPriceSale}>
                         <span>{game.sales.value}%</span>
-                        <span>{game.price}руб.</span>
-                        <span>{game.price -  Math.round((game.price / 100) * game.sales.value)} руб.</span>
+                        <span>{game.sales.oldPrice}руб.</span>
+                        <span>{game.price} руб.</span>
                       </div> 
                     : <div>{game.price} руб.</div>
                 }  

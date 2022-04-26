@@ -4,7 +4,6 @@ import { spawn, take ,takeEvery, put, call, apply, select } from "redux-saga/eff
 import { fetchForm, signIn } from "../../helpers/api";
 import { FormAction } from "../types/formType";
 import { StatusAction } from "../types/statusType";
-import { store } from '../store/store'
 
 
 export function* fetchData() {
@@ -17,7 +16,7 @@ export function* formSignUp() {
     try {
         const data = yield select(data => data.form)
         yield call(signIn, data)
-    } catch(e) {
+    } catch(e: any) {
         yield put({type: StatusAction.GET_STATUS, payload: e.response.data})
     }
 }

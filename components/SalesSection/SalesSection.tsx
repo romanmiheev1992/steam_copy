@@ -4,15 +4,22 @@ import { useSelectorHook } from "../../hooks/useSelectorHook";
 import { useState } from "react";
 import { Button } from "../Button/Button";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
-import { WatchedAction } from "../../redux/types/watchedTypes";
+import { motion } from "framer-motion";
 import { addWatched } from "../../helpers/functions";
-export const SalesSection = ({...props}: SalesSectionProps): JSX.Element => {
+export const SalesSection = ({ ...props}: SalesSectionProps): JSX.Element => {
 
-    const dispatch = useDispatch()
     const {gamesList} = useSelectorHook(state => state)
     const [margin, setMargin] = useState<number>(0)
     const salesGames = gamesList.games.filter(game => game.sales.status)
+
+    const variants = {
+        move: {
+            x: -margin,
+            transition: {
+                duration: .3
+            }
+        }
+    }
 
     const nextCorusel = () => {
         if(margin <= (333 * salesGames.length - 1000)){
@@ -22,6 +29,7 @@ export const SalesSection = ({...props}: SalesSectionProps): JSX.Element => {
         }
            
     }   
+    
     const prevCorusel = () => {
         if(margin > 0) {
             setMargin(margin - 333)
@@ -33,7 +41,7 @@ export const SalesSection = ({...props}: SalesSectionProps): JSX.Element => {
     
 
     return(
-        <div className={styles.SalesSection}>
+        <div className={styles.SalesSection} {...props}>
             <p>СПЕЦИАЛЬНЫЕ ПРЕДЛОЖЕНИЯ</p>
             <div className={styles.sliderWrapper}>
                 <Button 
@@ -41,9 +49,11 @@ export const SalesSection = ({...props}: SalesSectionProps): JSX.Element => {
                     onClick={() => prevCorusel()}
                 />
                 <div className={styles.SalesSectionField}>
-                    <div 
+                    <motion.div 
                         className={styles.SalesSectionCarusel}
-                        style={{width: `${333 * salesGames.length}px` , transform: `translateX(-${margin}px)`}}    
+                        style={{width: `${333 * salesGames.length}px`}}    
+                        animate={'move'}
+                        variants={variants}  
                     >
                         {
                             salesGames.map(game => (
@@ -68,7 +78,7 @@ export const SalesSection = ({...props}: SalesSectionProps): JSX.Element => {
                                 </Link>
                             ))
                         }   
-                    </div>
+                    </motion.div>
                 </div>
                 <Button 
                     type="slider_right"

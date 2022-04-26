@@ -7,6 +7,22 @@ body {
 	font-family: "Noto Sans", sans-serif;
 
 }
+body::-webkit-scrollbar {
+	width: 10px;
+	
+	background: var(--black);
+}
+
+body::-webkit-scrollbar-track {
+	background: var(--black-background);
+	
+}
+
+body::-webkit-scrollbar-thumb  {
+	background: var(--blue-dark);
+	border-radius: 15px;
+	padding: 2px;
+}
 
 a {
 	text-decoration: none;

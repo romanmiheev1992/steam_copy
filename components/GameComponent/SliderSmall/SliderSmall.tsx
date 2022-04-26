@@ -2,20 +2,33 @@ import { SliderSmallProps } from "./SliderSmall.props";
 import styles from './SliderSmall.module.css'
 import cn from 'classnames'
 import Play from './icon/play.svg'
-import { Button } from "../../Button/Button";
+import { motion } from 'framer-motion'
 
 
 export const SliderSmall = ({photos, setNum, num, ...props}: SliderSmallProps): JSX.Element => {
 
+    const variants = {
+        moveRight: {
+            x: 100
+        },
+        moveLeft: {
+            x: 0
+        }
+    }
+
     return (
-        <div className={styles.SliderSmall} {...props}>
+        <div 
+        className={styles.SliderSmall} 
+        {...props}
+        
+        >
 
             <div 
             onClick={() => setNum(0)}
-
             className={cn(styles.SliderSmallTrailer, {
                 [styles.active]: num === 0
             })}>
+            
                 <img src={photos.photos.cardLabel}></img> 
                 <Play/>
             </div>

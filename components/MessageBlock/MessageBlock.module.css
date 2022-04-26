@@ -47,6 +47,14 @@
 }
 
 
+.showSuccessCard {
+    animation: messageShowSuccessCard 5s ease-in-out ;
+}
+.showSuccessCard P {
+    text-align: center;
+}
+
+
 @keyframes messageShow {
     0% {top: 0; opacity: 0;}
     20% {top: 200px; opacity: 1;}
@@ -83,6 +91,13 @@
 }
 
 @keyframes messageShowErrorEmailNotFound {
+    0% {top: 0; opacity: 0;}
+    20% {top: 200px; opacity: 1;}
+    80% {top: 200px; opacity: 1;}
+    100% {top: 0; opacity: 0;}
+}
+
+@keyframes messageShowSuccessCard {
     0% {top: 0; opacity: 0;}
     20% {top: 200px; opacity: 1;}
     80% {top: 200px; opacity: 1;}

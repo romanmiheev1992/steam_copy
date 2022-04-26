@@ -20,21 +20,11 @@
     -webkit-box-shadow: 11px 11px 8px 0px rgba(0, 0, 0, 0.2);
     -moz-box-shadow: 11px 11px 8px 0px rgba(0, 0, 0, 0.2);
     box-shadow: 11px 11px 8px 0px rgba(0, 0, 0, 0.2);
-    transition: all .3s ease-in-out;
     z-index: 100;
 }
 .MainList {
     margin-top: 55px;
 }
-
-.Sidebar_Show {
-    transform: translateX(0);
-}
-
-.Sidebar_Hide {
-    transform: translateX(-310px);
-}
-
 @keyframes BlackBlockAppear {
     from {background: rgba(255, 255, 255, 0);}
     to {background: rgba(0, 0, 0, 0.562);}

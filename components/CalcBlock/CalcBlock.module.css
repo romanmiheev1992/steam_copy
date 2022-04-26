@@ -1,5 +1,25 @@
 .CalcBlock {
+    position: relative;
     width: 300px;
-    height: 300px;
+    min-height: 200px;
     justify-self: end;
+    background: rgba(0, 0, 0, 0.144);
+    border-radius: 10px;
+    display: grid;
+}
+
+.CalcBlock p:last-child {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+}
+
+.CalcBlock p {
+    margin-left: 20px;
+}
+
+.CalcBlock button {
+ margin:10px;
+ height: 40px;
+ align-self: end;
 }

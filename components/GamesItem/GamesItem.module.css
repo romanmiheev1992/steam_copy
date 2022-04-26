@@ -5,7 +5,7 @@
     grid-template-rows: 1fr;
     grid-template-columns: 2fr 1fr;
     box-shadow: 8px 8px 8px 1px rgb(0 0 0 / 20%);
-    transition: all .3s ease-in-out;
+
 }
 
 .GameItem:last-child {

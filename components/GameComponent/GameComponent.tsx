@@ -11,9 +11,7 @@ import { GameInfo } from "./GameInfo/GameInfo"
 import { Price } from "./Price/Price"
 import { GameDescritption } from "./GameDescritption/GameDescritption"
 import { GameSetting } from "./GameSetting/GameSetting"
-import { useDispatch } from "react-redux"
-import { WatchedAction } from "../../redux/types/watchedTypes"
-import { SortBlock } from "../SortBlock/SortBlock"
+
 
 export const GameComponent = ({...props}: GameComponentProps): JSX.Element => {
 
@@ -22,8 +20,6 @@ export const GameComponent = ({...props}: GameComponentProps): JSX.Element => {
     const [currentGame, setCurrentGame] = useState<Games>(gamesList.games[0])
 
     const router = useRouter()
-
- 
 
     useEffect(() => {
         gamesList.games && gamesList.games.map(game => (
