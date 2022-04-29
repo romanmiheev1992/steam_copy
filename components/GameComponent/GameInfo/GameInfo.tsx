@@ -6,7 +6,7 @@ export const GameInfo = ({game, ...props}: GameInfoProps) => {
     return (
         <div className={styles.GameInfo} {...props}>
             <img src={game.photos.cardLabel} />
-            <div>
+            <div className={styles.GameInfoDescription}>
                 {`${game.discription.text.slice(0, 200)}...`}
             </div>
             <div className={styles.InfoBlock}>

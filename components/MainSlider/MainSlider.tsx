@@ -8,6 +8,7 @@ import { SliderBord } from "../SliderBord/SliderBord";
 import Link from "next/link";
 import { Games } from "../../interfaces/dataInterfase";
 import { addWatched } from "../../helpers/functions";
+import { useSwipeable } from "react-swipeable";
 
 export const MainSlider = ({...props}: MainSliderProps): JSX.Element => {
     
@@ -15,12 +16,14 @@ export const MainSlider = ({...props}: MainSliderProps): JSX.Element => {
     const [imageNum, setImageNum] = useState<number | null>(null)
     const [slideNum, setSlideNum] = useState<number>(0)
     const recomendedList = gamesList.games.filter(game => game.recomended)
+    
 
-    const variants = { 
-        show : {
-            opacity: 1
-        }
-    }
+    const handlers = useSwipeable({
+        onSwipedLeft: () =>  slideNum >= recomendedList.length - 1 ? setSlideNum(0) : setSlideNum(slideNum + 1),
+        onSwipedRight: () => slideNum <= 0 ?  setSlideNum(recomendedList.length - 1) : setSlideNum(slideNum - 1),
+    })
+
+
 
     const onMouseEnter = (e) => {
         setImageNum(e._targetInst.key)
@@ -53,7 +56,6 @@ export const MainSlider = ({...props}: MainSliderProps): JSX.Element => {
         >
             <p>ПОПУЛЯРНОЕ И РЕКОМЕНДУЕМОЕ</p>
             <div className={styles.MainSliderPoster}>
-              
                 <>
                 <Button 
                     type="slider_left"
@@ -65,6 +67,7 @@ export const MainSlider = ({...props}: MainSliderProps): JSX.Element => {
                         ?
                             <Link key={i} href={`games/${game.alias}`}>
                                 <div 
+                                {...handlers}
                                 className={styles.MainPosterBlock}
                                 onClick={() => addWatched(game)}   
                                 >

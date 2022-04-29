@@ -67,3 +67,16 @@
     justify-self: start;
     margin-left: 5px;
 }
+
+@media screen and (max-width: 1000px) {
+    .PriceSection {
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .PriceSection {
+        width: 100%;
+       
+    }
+}

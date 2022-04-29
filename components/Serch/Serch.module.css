@@ -57,3 +57,17 @@
 .GameBlock img {
     width: 100px;
 }
+
+@media screen and (max-width: 1000px) {
+    .Search {
+        width: 100%
+    }
+
+    .Search input {
+        width: 90%;
+    }
+
+    .Search input:focus {
+        width: 90%;
+    }
+}

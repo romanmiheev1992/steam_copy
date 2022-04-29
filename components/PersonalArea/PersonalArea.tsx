@@ -29,6 +29,30 @@ export const PersonalArea = ({...props}: PersonalAreaProps): JSX.Element => {
         router.push('/')
     }
 
+    
+    const success = {
+        done: {
+            opacity: 1,
+            y: [0, 300, 300, 300,  0],
+            transition: {
+                duration: 5
+            }
+        }
+    }
+
+
+    const salesInfo = () => {
+        return (
+            <motion.div 
+            variants={success}
+            animate={'done'}
+             className={styles.SalesInfo}>
+               <p>Оплата прошла успешно! <br/> Покупка совершена!</p>  
+            </motion.div>
+        )
+    }
+
+
     return (
         <motion.div layout className={styles.PersonalArea}>
             <h3>Личный кабинет</h3>
@@ -57,10 +81,6 @@ export const PersonalArea = ({...props}: PersonalAreaProps): JSX.Element => {
 
                                 
                             </motion.div>
-
-
-                        
-                           
                            
                         ))
                         : <div className={styles.Enpty}>
@@ -68,12 +88,14 @@ export const PersonalArea = ({...props}: PersonalAreaProps): JSX.Element => {
                             <p>Корзина пуста</p>
                             </div> 
                     }
+                     <div className={styles.PersonalAreaButton}>
+                        <Button type='primary' onClick={() => exit()}>Выход</Button>
+                    </div>
                 </div>
                 <CalcBlock/>    
             </div>
-            <div className={styles.PersonalAreaButton}>
-                <Button type='primary' onClick={() => exit()}>Выход</Button>
-            </div>
+           
+            {/* {salesInfo()} */}
             
         </motion.div>
     )

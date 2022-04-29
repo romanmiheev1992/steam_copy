@@ -13,7 +13,7 @@ import { GameDescritption } from "./GameDescritption/GameDescritption"
 import { GameSetting } from "./GameSetting/GameSetting"
 
 
-export const GameComponent = ({...props}: GameComponentProps): JSX.Element => {
+export const GameComponent = ({className, ...props}: GameComponentProps): JSX.Element => {
 
     const {gamesList} = useSelectorHook(state => state)
     const [sliderCounter, setSliderCounter] = useState(0)
@@ -54,20 +54,15 @@ export const GameComponent = ({...props}: GameComponentProps): JSX.Element => {
                 currentGame
                 ? 
                 <>
-                    <p>{currentGame.name}</p>
+                    <h3>{currentGame.name}</h3>
 
-                    <Slider className={styles.SliderSection} photos={currentGame} num={sliderCounter}/>
-
+                    <Slider photos={currentGame} num={sliderCounter}/>
                     <div key={currentGame.alias} className={styles.SmellSliderWrapper}>
                         <div className={styles.SmallSliderButtonLeft}><Button type='small_slider_left' onClick={() => onClickButtonLeft()}></Button></div>
                         <SliderSmall photos={currentGame} setNum={setSliderCounter}  num={sliderCounter}/>
                         <div className={styles.SmallSliderButtonRight}><Button type='small_slider_right' onClick={() => onClickButtonRight()}></Button></div>
-                    </div>
-
-                    <div className={styles.GameComponentInfoSection}>
-                        <GameInfo game={currentGame} />
-                    </div>
-
+                    </div>                    
+                    <GameInfo game={currentGame} />
                     <Price game={currentGame}/>
                     <GameDescritption game={currentGame}/>
                     <GameSetting game={currentGame}/>

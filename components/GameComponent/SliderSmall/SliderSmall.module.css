@@ -73,3 +73,16 @@
 .active {
     outline: 2px solid var(--white);
 }
+
+
+@media screen and (max-width: 600px) {
+    .SliderSmall {
+        width: 100%;
+       
+    }
+
+    .SliderSmall::-webkit-scrollbar {
+       display: none;
+     }
+     
+}

@@ -19,7 +19,7 @@ export const Sidebar = ({...props}: SidebarProps): JSX.Element => {
             x: 0,
         },
         hide: {
-            x: -300
+            x: -500
         }
 
     }

@@ -7,15 +7,6 @@ import { motion } from 'framer-motion'
 
 export const SliderSmall = ({photos, setNum, num, ...props}: SliderSmallProps): JSX.Element => {
 
-    const variants = {
-        moveRight: {
-            x: 100
-        },
-        moveLeft: {
-            x: 0
-        }
-    }
-
     return (
         <div 
         className={styles.SliderSmall} 

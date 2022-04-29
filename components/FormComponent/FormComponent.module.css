@@ -33,3 +33,25 @@
     box-shadow: 8px 8px 8px 1px rgb(0 0 0 / 20%);
 }
 
+.AdopButton {
+    display: none;
+}
+
+
+
+
+@media screen and (max-width: 600px) {
+    .imgBlock {
+       display: none; 
+       
+    }
+
+    .AdopButton {
+        display: block;
+        position: absolute;
+        top: 80%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+  
+}

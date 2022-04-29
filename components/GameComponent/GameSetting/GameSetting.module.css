@@ -2,7 +2,7 @@
     width: 300px;
     min-height: 155px;
     grid-area: setting;
-    margin-left: 20px;
+    margin-left: 0px;
     font-size: 11px;
     margin-top: 5px;
     background: var(--blue-dark);
@@ -34,3 +34,11 @@
     margin-top: 10px;
 }
 
+@media screen and (max-width: 1000px) {
+    .GameSetting {
+        width: 100%;
+    }
+
+
+
+}

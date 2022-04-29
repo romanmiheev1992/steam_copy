@@ -32,3 +32,16 @@
     background:  #2a5085;
     color: var(--white);
 }
+
+@media screen and (max-width: 800px) {
+    .SortSection {
+        width: 100%;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .SortSection {
+        width: 100%;
+    }
+}

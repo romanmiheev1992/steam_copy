@@ -13,14 +13,12 @@
     height: 190px;
     overflow: hidden;
     box-shadow: 8px 8px 8px 1px rgb(0 0 0 / 20%);
-
 }
 
 .SalesSectionCarusel {
     display: flex;
     width: 2000px;
-    height: 200px;
-    transform: translateX(200px);
+    height: 270px;
     transition: transform .4s ease-in-out;
 }
 
@@ -60,6 +58,7 @@
 .SalesInfo p span:nth-child(2) {
     text-decoration: line-through;
     margin: 0 10px;
+    color: rgba(255, 255, 255, 0.466)
 }
 
 .sliderWrapper {
@@ -71,4 +70,52 @@
 
 .sliderWrapper button{
     align-self: center;
+}
+
+@media screen and (max-width: 1000px) {
+
+    .SalesSection {
+        width: 720px;
+        margin: 0  auto;
+    }
+    .SalesSectionField {
+        width: 660px;
+    }
+
+}
+
+@media screen and (max-width: 700px) {
+
+    .SalesSection {
+        width: 580px;
+        margin: 0  auto;
+    }
+    .SalesSectionField {
+        width: 520px;
+      
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+
+    .SalesSection {
+        width: 390px;
+        margin: 0  auto;
+    }
+
+    .SalesSection p {
+        text-align: center;
+        margin-left: 0;
+    }
+
+    .sliderWrapper {
+        width: 390px;
+    }
+
+    .SalesSectionField {
+        width: 330px;
+        overflow: hidden;
+    }
+
 }

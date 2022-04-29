@@ -7,7 +7,6 @@
 }
 .GameDescritption p:first-child {
     padding-bottom: 4px;
-    /* border-bottom: 1px solid rgba(180, 180, 180, 0.151); */
 }
 
 .GameDescritption img {
@@ -18,7 +17,7 @@
 
 .GameDescritption p:nth-child(4) {
     padding-bottom: 4px;
-    /* border-bottom: 1px solid rgba(180, 180, 180, 0.151); */
+
 }
 
 .SistemRequirements {
@@ -53,4 +52,22 @@
 .GameText {
     font-size: 12px;
     color: aqua;
+}
+
+
+@media screen and (max-width: 600px) {
+    .GameDescritption {
+        width: 100%;
+       
+    }
+
+    .GameDescritption img {
+        width: 100%;
+       
+    }
+
+    .GameDescritption p {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 }

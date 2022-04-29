@@ -2,6 +2,8 @@
     color: var(--white);
     width: 800px;
     margin: 150px auto 0 auto;
+    display: grid;
+    justify-content: center;
 }
 
 .GameItem {
@@ -11,5 +13,12 @@
 
 .GameItem video {
     height: 100%;
+}
+
+@media screen and (max-width: 800px) {
+    .GameList {
+         width: 100%;
+    }
+   
 }
 

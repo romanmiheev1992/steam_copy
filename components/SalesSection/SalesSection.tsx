@@ -6,6 +6,9 @@ import { Button } from "../Button/Button";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { addWatched } from "../../helpers/functions";
+import { useSwipeable } from "react-swipeable";
+
+
 export const SalesSection = ({ ...props}: SalesSectionProps): JSX.Element => {
 
     const {gamesList} = useSelectorHook(state => state)
@@ -16,10 +19,16 @@ export const SalesSection = ({ ...props}: SalesSectionProps): JSX.Element => {
         move: {
             x: -margin,
             transition: {
-                duration: .3
+                duration: 0
             }
         }
     }
+
+
+    const handlers = useSwipeable({
+        onSwipedLeft: (event) => margin <= (333 * salesGames.length - 333) ? setMargin(margin - event.deltaX) : setMargin(0),
+        onSwipedRight: (event) => margin > 0 ? setMargin(margin - event.deltaX ) :  setMargin(0),
+    })
 
     const nextCorusel = () => {
         if(margin <= (333 * salesGames.length - 1000)){
@@ -43,7 +52,7 @@ export const SalesSection = ({ ...props}: SalesSectionProps): JSX.Element => {
     return(
         <div className={styles.SalesSection} {...props}>
             <p>СПЕЦИАЛЬНЫЕ ПРЕДЛОЖЕНИЯ</p>
-            <div className={styles.sliderWrapper}>
+            <div className={styles.sliderWrapper}   {...handlers}>
                 <Button 
                     type="slider_left"
                     onClick={() => prevCorusel()}
@@ -59,6 +68,7 @@ export const SalesSection = ({ ...props}: SalesSectionProps): JSX.Element => {
                             salesGames.map(game => (
                                 <Link key={game.alias} href={`games/${game.alias}`}>
                                     <div
+                                    
                                         onClick={() => addWatched(game)}
                                         className={styles.SalesSectionBlock}
                                         style={{backgroundImage: `url(${game.photos.cardLabel})`}}

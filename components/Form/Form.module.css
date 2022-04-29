@@ -21,3 +21,13 @@
 .hide {
     opacity: .5;
 }
+
+@media screen and (max-width: 600px) {
+   
+    .Form {
+        position: absolute;
+        top: 40% !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+    }
+}

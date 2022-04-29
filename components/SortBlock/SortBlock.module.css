@@ -58,6 +58,10 @@
     grid-area: photos;
     width: 333px;
 }
+
+.SortBlockPhotos img:nth-child(5) {
+    margin-bottom: 5px;
+}
 .GameBlock:first-child {
     margin-top: 10px;
 }
@@ -120,12 +124,14 @@
     padding: 0 3px;
     justify-self: end;
     color: var(--white)
-    
 }
 
 .GamePrice div span:nth-child(2) {
     text-decoration: line-through;
     justify-self: end;
+    color: rgba(255, 255, 255, 0.219)
+ 
+
 }
 .GamePrice div span:last-child {
     justify-self: end;
@@ -145,6 +151,112 @@
     justify-self: center;
     align-self: center;
 }
+
+.SortBlockPhotos img:last-child{
+   display: none;
+}
+
 .SortBlockPhotos img:last-child {
     margin-bottom: 15px;
+}
+
+
+@media screen and (max-width: 1000px) {
+
+    .SortBlock {
+        width: 660px;
+    }
+
+    .SortBlockGames {
+        width: 400px;
+    }
+    
+    .GameBlock {
+        font-size: 10px;
+    }
+
+    .SortBlockGames {
+        width: 460px;
+        font-size: 10px;
+    }
+
+    .SortBlockLabel {
+        width: 400px;
+        grid-area: label;
+    }
+
+    .SortBlockPhotos {
+        width: 200px;
+        height: 100%;
+        font-size: 11px;
+        align-self: center;
+    }
+
+    .SortBlockPhotos img{
+        width: 180px;
+        justify-self: center;
+        align-self: end;
+    }
+
+    .SortBlockLabel ul {
+        font-size: 11px;
+    }
+
+    .SortBlockPhotos img:last-child{
+        display: block;
+     }
+}
+
+
+
+@media screen and (max-width: 700px) {
+    .SortBlock {
+        width:90%;
+    }
+    .SortBlockPhotos {
+        display: none;
+    }
+
+    .SortBlockGames {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .GameBlock {
+        font-size: 10px;
+        grid-template-columns: 1fr 2fr 1fr; 
+    }
+
+    .GamePrice div span:nth-child(2) {
+        color: rgba(255, 255, 255, 0.219)
+    }
+
+    .GamePrice div{
+        display: grid;
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-columns: 1fr;
+    }
+    
+}
+
+@media screen and (max-width: 500px) {
+    .SortBlock {
+        width:100%;
+    }
+    .GameBlock {
+        font-size: 10px;
+        grid-template-columns: 1fr 2fr 1fr; 
+    }
+
+    .GamePrice div span:nth-child(2) {
+        color: rgba(255, 255, 255, 0.219)
+    }
+
+    .GamePrice div{
+        display: grid;
+        grid-template-rows: repeat(3, 1fr);
+        grid-template-columns: 1fr;
+    }
+    
 }

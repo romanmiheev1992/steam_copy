@@ -22,13 +22,8 @@ export const CalcBlock = ({...props}: CalcBlockProps): JSX.Element => {
     return (
 
         <>
-        <motion.div layout className={styles.CalcBlock}>
+        <div  className={styles.CalcBlock}>
 
-            {
-                gameBasket.games && gameBasket.games.map(game => (
-                    <p key={game.alias}>{game.name}</p>
-                ))
-            }
             <p>И того: {gameBasket.games.reduce((acum, item) => acum += item.sales.status ? item.price - Math.round((item.price / 100) * item.sales.value) : item.price , 0)} руб.</p>
             {
                 gameBasket.games.length
@@ -36,7 +31,7 @@ export const CalcBlock = ({...props}: CalcBlockProps): JSX.Element => {
                 : null
             }
             
-        </motion.div>
+        </div>
 
         </>
         

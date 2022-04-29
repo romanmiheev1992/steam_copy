@@ -11,7 +11,7 @@ import { addWatched } from "../../helpers/functions"
 
 
 export const SortBlock = ({...props}: SortBlockProps): JSX.Element => {
-    const dispatch = useDispatch()
+
     const {gamesList} = useSelectorHook(state => state)
     const [games, setGames] = useState<Games[]>(gamesList.games)
     const [photos, setPhotos] = useState<Games>(games[0])
@@ -93,7 +93,7 @@ export const SortBlock = ({...props}: SortBlockProps): JSX.Element => {
                 <p>{photos && photos.name}</p>
                 {
                   photos && photos.photos.cardImageListBig.map((photo: string, i: number) => {
-                       if(i < 4) {
+                       if(i < 5) {
                            return <img key={i} src={photo}></img>
                        }
                    })

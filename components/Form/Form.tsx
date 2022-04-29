@@ -13,7 +13,7 @@ import { GameBasketAction } from "../../redux/types/gameBasketType"
 import { StatusAction } from "../../redux/types/statusType"
 
 
-export const Form = ({...props}: FormProps): JSX.Element => {
+export const Form = ({toggle, ...props}: FormProps): JSX.Element => {
     const dispatch = useDispatch()
     const {form, status, formToggle} = useSelectorHook(state => state)
     const [passwordToggle, setPasswordToggle] = useState<boolean>(false)
@@ -96,7 +96,7 @@ export const Form = ({...props}: FormProps): JSX.Element => {
         >
             <Input value={form.email} onBlur={(e) => onBlur(e)} name='email' error={emailTouched && `${emailError }`} onChange={(e) => inputEmain(e)} placeholder="Email"/>
             <Input value={form.password} onBlur={(e) => onBlur(e)} name='password' error={passwordTouched && `${passwordError }`} onChange={(e) => inputPassword(e)} type={passwordToggle ? 'text' : 'password'} placeholder="Пароль"><Eye onClick={() => setPasswordToggle(!passwordToggle)} className={cn({[styles.hide]: !passwordToggle})}/></Input>
-            <Button type="submit">{!formToggle.formToggle ? `Зарегистрироваться` : 'Войти'}</Button>
+            <Button type="submit">{!formToggle.formToggle || toggle ? `Зарегистрироваться` : 'Войти'}</Button>
         </motion.form>
     )
 }

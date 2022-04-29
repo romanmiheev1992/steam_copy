@@ -11,11 +11,13 @@ import { PersonalArea } from "../PersonalArea/PersonalArea"
 import { FormAction } from "../../redux/types/formType"
 import { BankCard } from "../BankCard/BankCard"
 import { motion } from 'framer-motion'
+import { useState } from "react"
 
 
 export const FormComponent = ({...props}: FormComponentProps): JSX.Element => {
 
-    const {formToggle, userData, cardToggle, cardNum} = useSelectorHook(state => state)
+    const {formToggle, userData, cardNum} = useSelectorHook(state => state)
+    const [adopToggle, setAdopToggle] = useState<boolean>(formToggle.formToggle)
     const dispatch = useDispatch()
 
     const variants = {
@@ -35,14 +37,7 @@ export const FormComponent = ({...props}: FormComponentProps): JSX.Element => {
             dispatch({type:  FormAction.INPUT_PASSWORD, payload: ''}) 
     }
 
-    const salesInfo = () => {
-        return (
-            <div className={styles.SalesInfo}>
-               <p>Оплата прошла успешно! <br/> Покупка совершена!</p>  
-            </div>
-        )
-    }
-
+ 
     return (
         <div className={styles.FormComponent} {...props}>
            
@@ -61,20 +56,15 @@ export const FormComponent = ({...props}: FormComponentProps): JSX.Element => {
                         <p>{!formToggle.formToggle ? 'Если вы уже зарегистрировалить, то для входа нажми эту кнопку' : 'Прежде чем войти с начала надо зарегистрироваться'}</p>
                         <Button type="primary" onClick={() => toggleForm()}>{!formToggle.formToggle ? 'Войти' : 'Зарегистрироваться'}</Button>
                     </motion.div>
-                    <Form/>
+                    <Form toggle={adopToggle}/>
+                    <div className={styles.AdopButton}>
+                    <Button type='primary' onClick={() => setAdopToggle(!adopToggle)}>{!formToggle.formToggle || adopToggle ? 'Войти' : 'Зарегистрироваться'}</Button>
+                    </div>
                 </>
+
+                
             }
             <MessageBlock/>
-            {
-                cardNum.cardSuccess
-                ? salesInfo()
-                : null
-            }
-            {
-                cardToggle.toggle
-                ? <BankCard/>
-                : null
-            }
         </div>
     )
 }

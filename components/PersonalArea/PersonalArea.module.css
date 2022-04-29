@@ -1,5 +1,6 @@
 .PersonalArea {
     width: 1000px;
+    height: 120vh;
     margin: 0 auto;
     color: var(--white);
     position: relative;
@@ -66,13 +67,6 @@
     z-index: 1;
     left: 50%;
     transform: translateX(-170%);
-    /* width: 100%;
-    height: 100px;
-    display: grid;
-    grid-template-rows: 100px 50px;
-    grid-template-columns: 1fr;
-    justify-content: center;
-    align-content: center; */
 }
 
 .Enpty svg {
@@ -87,4 +81,51 @@
 
 .PersonalAreaButton {
     margin-top: 20px;
+}
+
+.SalesInfo {
+    position: absolute;
+    top: -60px;
+    left: 10%;
+    transform: translateX(-50%);
+    width: 300px;
+    color: var(--white);
+    background: var(--black);
+    text-align: center;
+    font-size: 14px;
+    border-radius: 10px;
+    z-index: 30;
+}
+
+
+@media screen and (max-width: 1000px) {
+    .PersonalArea {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .PersonalAreaBlocks {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 50px;
+    }
+   
+    .GameBasketBlock {
+        width: 100%;
+        grid-template-columns: 200px 130px 90px 150px;
+    }
+
+    .GameBasketBlock img {
+        width: 150px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .GameBasketBlock {
+        
+        grid-template-columns: 150px 100px 90px 80px;
+    }
+
+    .GameBasketBlock p{
+        font-size: 10px;
+    }
 }

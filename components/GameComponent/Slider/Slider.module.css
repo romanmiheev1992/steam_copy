@@ -1,6 +1,7 @@
 .Slider {
     width: 600px;
     overflow: hidden;
+    grid-area: slider;
 }
 
 .Slider img {
@@ -16,4 +17,22 @@
 @keyframes imageAppearense {
     from {opacity: 0;}
     to {opacity: 1;}
+}
+
+
+@media screen and (max-width: 600px) {
+    .Slider {
+        width: 100%;
+        height: 229px;
+    }
+
+    .Slider img {
+        width: 100%;
+        height: auto
+    }
+
+    .Slider video {
+        width: 100%;
+        height: auto
+    }
 }

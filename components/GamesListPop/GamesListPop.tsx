@@ -28,8 +28,6 @@ export const GamesListPop = ({...props}: GamesListProps): JSX.Element => {
        
     }, [])
 
-    console.log(game)
-
     useEffect(() => {
         sortPrice()
     }, [sortSet])
@@ -77,7 +75,7 @@ export const GamesListPop = ({...props}: GamesListProps): JSX.Element => {
 
     return (
         <div className={styles.GameList} {...props}>
-            <SortSection activeGenre={setActiveGenre} sort={setSortSet}/>
+            <SortSection activeGenre={setActiveGenre}/>
             <h3>{activeSection}</h3>
             {
                 game && game.map((game: Games, i: number) => (

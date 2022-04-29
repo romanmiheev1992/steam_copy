@@ -6,7 +6,7 @@ import { GamesListProps } from "./GamesList.props"
 import styles from './GamesList.module.css'
 import { GamesItem } from "../GamesItem/GamesItem"
 import { SortSection } from "../SortSection/SortSection"
-import { motion } from "framer-motion"
+
 export const GamesList = ({...props}: GamesListProps): JSX.Element => {
 
     const {gamesList} = useSelectorHook(state => state) 
@@ -15,28 +15,9 @@ export const GamesList = ({...props}: GamesListProps): JSX.Element => {
     const [sortSet, setSortSet] = useState<boolean>(false)
     const [currentList, setCurrentList] = useState<Games[]>([])
 
-    // useEffect(() => {
-    //     // setCurrentList(gamesList.games.sort())
-    //     sortPrice()
-
-    //     console.log(sortSet)
-    // }, [sortSet])
-
      useEffect(() => {
        setSortSet(true)
     }, [sortSet])
-
-    useEffect(() => {
-        if(sortSet) {
-             setCurrentList(currentList.sort((a, b) => a.price - b.price))
-        }
-    })
-
-
-
-    // useEffect(() => {
-    //     sortPrice()
-    // })
 
     useEffect(() => {
             currentGenre()
@@ -65,20 +46,11 @@ export const GamesList = ({...props}: GamesListProps): JSX.Element => {
         }
     }
 
-    // const sortPrice = () => {
-    //     if(sortSet == 'по убыванию') {
-    //        return setCurrentList(currentList.sort((a, b) => a.price - b.price))
-    //     }
-
-    //     if(sortSet == 'по возрастанию') {
-    //         return setCurrentList(currentList.sort((a, b) => b.price - a.price))
-    //     }
-    // }
 
      return (
         <div className={styles.GameList} {...props}>
 
-             <SortSection activeGenre={setActiveGenre} sort={setSortSet}/>
+             <SortSection activeGenre={setActiveGenre}/>
             <h3>{activeGenre}</h3>
                     {
                         currentList && currentList.map((game: Games, i: number) => (

@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
 
   return  <>
             <Head>
-              <title>Steam</title>
+              <title>Gamer</title>
               <link rel="icon" href="/favicon.ico" />
               <link rel="preconnect" href="https://fonts.googleapis.com"/>
               <link rel="preconnect" href="https://fonts.gstatic.com" />

@@ -78,6 +78,9 @@
     display: inline-block;
     padding-right: 10px;
 }
+.MainLabelPrice p span:nth-child(2) {
+    color: rgba(255, 255, 255, 0.219)
+}
 
 .MainLabelPhotos {
     display: grid;
@@ -101,4 +104,154 @@
 @keyframes imageAppearence {
     from {opacity: .7;}
     to {opacity: 1;}
+}
+
+
+@media screen and (max-width: 1000px) {
+    
+    .MainSlider {
+        width: 720px;
+        margin: 150px auto 60px auto;
+        display: flex;
+        flex-direction: column;
+
+        
+    }
+
+    .MainPosterBlock {
+        background: none;
+        box-shadow: none;
+    }
+
+    .MainPoster {
+        margin: 0 auto;
+    }
+
+    .MainPoster img {
+    -webkit-box-shadow: 11px 11px 10px 0px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 11px 11px 10px 0px rgba(0, 0, 0, 0.2);
+    box-shadow: 11px 11px 10px 0px rgba(0, 0, 0, 0.2);
+    }
+
+    .MainLabel {
+            display: none;
+    }
+
+}
+
+@media screen and (max-width: 700px) {
+    
+    .MainSlider {
+        width: 580px;
+        margin: 150px auto 60px auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .MainSlider p {
+        text-align: center;
+        margin-left: 0;
+    }
+
+    .MainPosterBlock {
+        width: 520px;
+    }
+
+    .MainPoster {
+        margin: 0 auto;
+        width: 480px;
+        display: grid;
+        justify-content: center;
+        align-content: center;
+    }
+
+    .MainPoster img {
+        width: 480px;
+    
+    }
+
+}
+
+@media screen and (max-width: 700px) {
+    
+    .MainSlider {
+        width: 480px;
+        margin: 150px auto 60px auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .MainSliderPoster {
+        width: 480px;
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr ;
+        justify-content: center;
+    }
+
+    .MainSlider button {
+        display: none;
+    }
+
+    .MainPoster {
+        margin: 0 auto;
+        width: 480px;
+        display: grid;
+        justify-content: center;
+        align-content: center;
+    }
+
+    .MainPoster img {
+        width: 480px;
+    
+    } 
+
+}
+
+@media screen and (max-width: 500px) {
+    
+    .MainSlider {
+        width: 100%;
+        margin: 150px auto 60px auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .MainSliderPoster {
+        align-self: center;
+        justify-self: center;
+        width: 100%;
+        height: 280px;
+        display: grid;
+        grid-template-rows: 1fr;
+        grid-template-columns: 1fr ;
+        justify-content: center;
+    }
+
+    .MainPosterBlock {
+        width: 100%;
+        height: 240px;
+        justify-self: center;
+    }
+
+    .MainSlider button {
+        display: none;
+    }
+
+    .MainPoster {
+        justify-self: center;
+        width: 100%;
+        height: 250px;
+        display: grid;
+        justify-content: center;
+        align-content: center;
+    }
+
+    .MainPoster img {
+        width: 100%;
+        justify-self: center;
+    
+    } 
+
 }

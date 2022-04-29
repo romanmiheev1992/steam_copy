@@ -4,7 +4,7 @@ import cn from 'classnames'
 import styles from './SliderBord.module.css'
 
 export const SliderBord = ({lengthList, numClick, num ,...props}: SliderBordProps): JSX.Element => {
-
+    
     return (
         <div 
         {...props}
@@ -15,7 +15,7 @@ export const SliderBord = ({lengthList, numClick, num ,...props}: SliderBordProp
                     <div
                         key={i}
                         className={cn(styles.SliderBordBlock, {
-                            [styles.active] : i === num
+                            [styles.active] : i === num 
                         })}
                         onClick={() => numClick(i)}
                     ></div>
