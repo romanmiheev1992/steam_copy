@@ -1,38 +1,67 @@
 import { CalcBlockProps } from "./CalcBlock.props"
 import styles from './CalcBlock.module.css'
 import { useSelectorHook } from "../../hooks/useSelectorHook"
-import { useState } from "react"
 import { Button } from "../Button/Button"
-import { BankCard } from "../BankCard/BankCard"
+import { motion } from "framer-motion"
+import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { CardToggleAction } from "../../redux/types/cardToggleType"
-import { motion } from 'framer-motion'
+import { GameBasketAction } from "../../redux/types/gameBasketType"
+
 export const CalcBlock = ({...props}: CalcBlockProps): JSX.Element => {
 
-    const {gameBasket, cardToggle, cardNum} = useSelectorHook(state => state)
+    const {gameBasket} = useSelectorHook(state => state)
+    const [successToggle, setSuccessToggle] = useState<boolean>(false)
     const dispatch = useDispatch()
-    const onClick = () => {
-        if(cardNum.cardSuccess) {
-         
-        } else {
-            dispatch({type: CardToggleAction.TOGGLE_CARD})
+       
+    const success = {
+        done: {
+            opacity: 1,
+            y: [-70, 300, 300, 300,  -70],
+            transition: {
+                duration: 5
+            }
         }
+    }
+
+  
+
+
+    const salesInfo = () => {
+        return (
+            <motion.div 
+            variants={success}
+            animate={'done'}
+            className={styles.SalesInfo}>
+               <p>Оплата прошла успешно! <br/> Покупка совершена!</p>  
+            </motion.div>
+        )
+    }
+
+
+    const onClick = () => {
+        setSuccessToggle(!successToggle)
+        dispatch({type: GameBasketAction.DELETE_ALL_GAMES})
     }
 
     return (
 
         <>
-        <div  className={styles.CalcBlock}>
+        <div className={styles.CalcBlock} {...props}>
 
-            <p>И того: {gameBasket.games.reduce((acum, item) => acum += item.sales.status ? item.price - Math.round((item.price / 100) * item.sales.value) : item.price , 0)} руб.</p>
+            <p>И того: {gameBasket.games.reduce((acum, item) => acum += item.price , 0)} руб.</p>
             {
                 gameBasket.games.length
-                ? <Button onClick={onClick} type="submit">Купить</Button>
+                ? <Button onClick={() => onClick()} type="submit">Купить</Button>
                 : null
             }
-            
-        </div>
 
+            {
+                successToggle && gameBasket.games
+                ? salesInfo()
+                : null
+            }
+
+        </div>
         </>
         
     )

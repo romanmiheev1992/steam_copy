@@ -60,6 +60,7 @@
     text-decoration: line-through;
     align-self: center;
     justify-self: start;
+    color: rgba(255, 255, 255, 0.247);
 }
 
 .GameItemPriceSale span:nth-child(3) {

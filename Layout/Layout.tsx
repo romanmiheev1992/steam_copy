@@ -1,7 +1,6 @@
 import {Sidebar} from './Sidebar/Sidebar'
 import { Header } from './Header/Header'
 import {LayoutProps} from './Layout.props'
-import { Footer } from './Footer/Footer'
 import { FunctionComponent } from 'react'
 import styles from './Layout.module.css'
 import { Provider } from 'react-redux'

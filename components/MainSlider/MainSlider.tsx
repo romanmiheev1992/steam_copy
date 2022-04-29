@@ -99,8 +99,8 @@ export const MainSlider = ({...props}: MainSliderProps): JSX.Element => {
                                             {
                                                 game.sales.value
                                                 ? <p className={styles.MainLabelPriceSale}> 
-                                                        <span>{game.sales.value}%</span>  
-                                                        <span>{game.price} руб.</span> {game.price -  Math.round((game.price / 100) * game.sales.value)} руб.
+                                                        <span>-{game.sales.value}%</span>  
+                                                        <span>{game.sales.oldPrice} руб.</span> {game.price} руб.
                                                     </p>
                                                 : <p>{game.price} руб.</p>
                                             }

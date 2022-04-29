@@ -2,21 +2,19 @@ import { FormComponentProps } from "./FormComponent.props"
 import styles from './FormComponent.module.css'
 import { Form } from "../Form/Form"
 import { MessageBlock } from "../MessageBlock/MessageBlock"
-import cn from 'classnames'
 import { useSelectorHook } from "../../hooks/useSelectorHook"
 import { useDispatch } from "react-redux"
 import { FromToggleAction } from "../../redux/types/formToggleType"
 import { Button } from "../Button/Button"
 import { PersonalArea } from "../PersonalArea/PersonalArea"
 import { FormAction } from "../../redux/types/formType"
-import { BankCard } from "../BankCard/BankCard"
 import { motion } from 'framer-motion'
 import { useState } from "react"
 
 
 export const FormComponent = ({...props}: FormComponentProps): JSX.Element => {
 
-    const {formToggle, userData, cardNum} = useSelectorHook(state => state)
+    const {formToggle, userData} = useSelectorHook(state => state)
     const [adopToggle, setAdopToggle] = useState<boolean>(formToggle.formToggle)
     const dispatch = useDispatch()
 
@@ -58,7 +56,7 @@ export const FormComponent = ({...props}: FormComponentProps): JSX.Element => {
                     </motion.div>
                     <Form toggle={adopToggle}/>
                     <div className={styles.AdopButton}>
-                    <Button type='primary' onClick={() => setAdopToggle(!adopToggle)}>{!formToggle.formToggle || adopToggle ? 'Войти' : 'Зарегистрироваться'}</Button>
+                    <Button type='primary' onClick={() => toggleForm()}>{!formToggle.formToggle ? 'Войти' : 'Зарегистрироваться'}</Button>
                     </div>
                 </>
 

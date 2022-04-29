@@ -29,35 +29,22 @@ export const PersonalArea = ({...props}: PersonalAreaProps): JSX.Element => {
         router.push('/')
     }
 
-    
-    const success = {
-        done: {
-            opacity: 1,
-            y: [0, 300, 300, 300,  0],
-            transition: {
-                duration: 5
-            }
-        }
-    }
+ 
 
-
-    const salesInfo = () => {
-        return (
-            <motion.div 
-            variants={success}
-            animate={'done'}
-             className={styles.SalesInfo}>
-               <p>Оплата прошла успешно! <br/> Покупка совершена!</p>  
-            </motion.div>
-        )
-    }
-
+  
 
     return (
         <motion.div layout className={styles.PersonalArea}>
-            <h3>Личный кабинет</h3>
+            
+            <div className={styles.PersonalAreaButton}>
+                <h3>Личный кабинет</h3>
+                <Button type='primary' onClick={() => exit()}>Выход</Button>
+            </div>
             <p>Пользователь: {userData.email}</p>
             <h4>Корзина</h4>
+            
+               
+           
             <div className={styles.PersonalAreaBlocks}>
                 <div>
                     {   gameBasket.games.length
@@ -72,11 +59,8 @@ export const PersonalArea = ({...props}: PersonalAreaProps): JSX.Element => {
 
                                 <img src={game.photos.smallCard}/>
                                 <p> {game.name}</p>
-                                {
-                                    game.sales.status
-                                    ?  <p>{game.price -  Math.round((game.price / 100) * game.sales.value)} руб.</p>
-                                    :  <p>{game.price} руб.</p>
-                                }
+                                <p>{game.price} руб.</p>
+                              
                                 <Button onClick={() => deleteGame(game.alias)} type='primary'>Удалить</Button>
 
                                 
@@ -88,15 +72,10 @@ export const PersonalArea = ({...props}: PersonalAreaProps): JSX.Element => {
                             <p>Корзина пуста</p>
                             </div> 
                     }
-                     <div className={styles.PersonalAreaButton}>
-                        <Button type='primary' onClick={() => exit()}>Выход</Button>
-                    </div>
+                     
                 </div>
                 <CalcBlock/>    
             </div>
-           
-            {/* {salesInfo()} */}
-            
         </motion.div>
     )
 }

@@ -78,8 +78,8 @@ export const SalesSection = ({ ...props}: SalesSectionProps): JSX.Element => {
                                         >
                                             <p>{game.name} 
                                                 <span>{game.sales.value}%</span>
-                                                <span>{game.price}руб.</span>
-                                                <span>{game.price -  Math.round((game.price / 100) * game.sales.value)} руб.</span>
+                                                <span>{game.sales.oldPrice}руб.</span>
+                                                <span>{game.price} руб.</span>
                                             </p> 
 
                                         </div>
