@@ -10,7 +10,6 @@ import { Input } from "../Input/Input"
 import { useSelectorHook } from "../../hooks/useSelectorHook"
 import { useDispatch } from "react-redux"
 import { CardAction } from "../../redux/types/cardType"
-import { CardToggleAction } from "../../redux/types/cardToggleType"
 import { Button } from "../Button/Button"
 
 export const BankCard = ({...props}: BankCardProps): JSX.Element => {
@@ -28,7 +27,7 @@ export const BankCard = ({...props}: BankCardProps): JSX.Element => {
         if(cardNum.cvv.length >= 3 && status) {
             dispatch({type: CardAction.INPUT_CATD_SUCCESS, payload: true})
             setStatus(false)
-            dispatch({type: CardToggleAction.TOGGLE_CARD})
+            // dispatch({type: CardToggleAction.TOGGLE_CARD})
         }
     }, [cardNum])
 
@@ -80,7 +79,7 @@ export const BankCard = ({...props}: BankCardProps): JSX.Element => {
 
     return (
            <div className={cn(styles.BankCardWrapper)} {...props}>
-               <Button onClick={() => dispatch({type: CardToggleAction.TOGGLE_CARD})} type="primary">Отменить</Button>
+               {/* <Button onClick={() => dispatch({type: CardToggleAction.TOGGLE_CARD})} type="primary">Отменить</Button> */}
                 <div className={cn(styles.BankCardFront, {
                     [styles.CardRotateFront]: !cardFront
                 })}>
