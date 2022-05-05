@@ -1,5 +1,5 @@
 import { Search } from '../Serch/Serch';
-import { useEffect, useState } from 'react';
+import { MouseEventHandler, useEffect, useState } from 'react';
 import styles from './MenuHeaderComponent.module.css'
 import { useSelectorHook } from '../../hooks/useSelectorHook';
 import { MenuHeaderComponentProps } from "./MenuHeaderComponent.props";

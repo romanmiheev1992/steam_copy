@@ -5,7 +5,7 @@ import styles from './Form.module.css'
 import { useSelectorHook } from "../../hooks/useSelectorHook"
 import { useDispatch } from "react-redux"
 import { FormAction } from "../../redux/types/formType"
-import { useEffect, useState } from "react"
+import { ChangeEvent, FocusEventHandler, FormEvent, useEffect, useState } from "react"
 import Eye from './icon/eye.svg'
 import cn from 'classnames'
 import { motion } from 'framer-motion'
@@ -28,7 +28,7 @@ export const Form = ({toggle, ...props}: FormProps): JSX.Element => {
     }, [status])
 
 
-    const onSubmit = (e) => {
+    const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         dispatch({type: GameBasketAction.DELETE_ALL_GAMES})
         
@@ -41,7 +41,7 @@ export const Form = ({toggle, ...props}: FormProps): JSX.Element => {
         } else if(form.email === '' || form.password === ''){
             setEmailError('Заполните данные корректно')
             setPasswordError('Заполните данные корректно')
-        }
+        } 
     }
 
     const onBlur = (e) => {
@@ -55,7 +55,7 @@ export const Form = ({toggle, ...props}: FormProps): JSX.Element => {
         }
     }
 
-    const inputEmain = (e) => {
+    const inputEmail = (e: ChangeEvent<HTMLInputElement>) => {
         dispatch({type: FormAction.INPUT_EMAIL, payload: e.target.value })
         const emailVal = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         if(emailVal.test(String(form.email).toLowerCase()) ) {
@@ -65,7 +65,7 @@ export const Form = ({toggle, ...props}: FormProps): JSX.Element => {
         }
     }
 
-    const inputPassword = (e) => {
+    const inputPassword = (e: ChangeEvent<HTMLInputElement>) => {
         dispatch({type: FormAction.INPUT_PASSWORD, payload: e.target.value })
         if(form.password.length < 6) {
             setPasswordError('Паполь не менее 6 символов')
@@ -94,8 +94,8 @@ export const Form = ({toggle, ...props}: FormProps): JSX.Element => {
             className={styles.Form}
             onSubmit={(e) => onSubmit(e)}
         >
-            <Input value={form.email} onBlur={(e) => onBlur(e)} name='email' error={emailTouched && `${emailError }`} onChange={(e) => inputEmain(e)} placeholder="Email"/>
-            <Input value={form.password} onBlur={(e) => onBlur(e)} name='password' error={passwordTouched && `${passwordError }`} onChange={(e) => inputPassword(e)} type={passwordToggle ? 'text' : 'password'} placeholder="Пароль"><Eye onClick={() => setPasswordToggle(!passwordToggle)} className={cn({[styles.hide]: !passwordToggle})}/></Input>
+            <Input value={form.email} onBlur={(e) => onBlur(e)} name='email' error={emailTouched && `${emailError}`} onChange={inputEmail} placeholder="Email"/>
+            <Input value={form.password} onBlur={(e) => onBlur(e)} name='password' error={passwordTouched && `${passwordError }`} onChange={inputPassword} type={passwordToggle ? 'text' : 'password'} placeholder="Пароль"><Eye onClick={() => setPasswordToggle(!passwordToggle)} className={cn({[styles.hide]: !passwordToggle})}/></Input>
             <Button type="submit">{!formToggle.formToggle || toggle ? `Зарегистрироваться` : 'Войти'}</Button>
         </motion.form>
     )

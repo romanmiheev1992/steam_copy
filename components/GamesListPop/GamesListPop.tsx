@@ -7,85 +7,65 @@ import { GamesListProps } from "./GamesListPop.props"
 import styles from './GamesListPop.module.css'
 import { GamesItem } from "../GamesItem/GamesItem"
 import { SortSection } from "../SortSection/SortSection"
-import { GameActions, GameSort } from "../../redux/types/gamesType"
 
 export const GamesListPop = ({...props}: GamesListProps): JSX.Element => {
 
     const {gamesList} = useSelectorHook(state => state) 
     const router = useRouter()
-    const [game, setGame] = useState<Games[]>([])
-    const [activeGenre, setActiveGenre] = useState<string>('Экшен')
-    const [sortSet, setSortSet] = useState<string>('')
-    const [activeSection, setActiveSection] = useState<string>('')
+    const [activeGenre, setActiveGenre] = useState<string>()
+    const [sortSet, setSortSet] = useState<boolean>(false)
+    const [currentList, setCurrentList] = useState<Games[]>([])
 
+    const [sort, setSort] = useState('')
 
     useEffect(() => {
-        sortPrice()
-    }, [sortSet])
+        currentSort()
+        setSortSet(!sortSet)
+    }, [sort])
     
-    useEffect(() => {
-        currentPage()
-       
-    }, [])
-
-    useEffect(() => {
-        sortPrice()
-    }, [sortSet])
-
     useEffect(() => {
         currentPage()
     }, [router])
 
-    useEffect(() => {
-        onChangeGenre()
-    }, [activeGenre])
-
-    const onChangeGenre = () => {
-
-        if(router.asPath.split('/')[router.asPath.split('/').length -1] === 'bestsaler') {
-              setGame(gamesList.games.filter(game => game.bestSeller && game.genre === activeGenre))
+    const currentSort = () => {
+        if(sort === 'price') {
+            setCurrentList(currentList.sort((a, b) => a.price - b.price))
         }
-        if(router.asPath.split('/')[router.asPath.split('/').length -1] === 'popular&new') {
-            setGame(gamesList.games.filter(game => game.new && game.genre === activeGenre))
-        }
-    }
-
-    const sortPrice = () => {
-
-        if(sortSet === 'по возрастанию') {
-            return setGame(game.sort((a, b) => b.price - a.price))
-        }
-
-        if(sortSet === 'по убыванию') {
-            return setGame(game.sort((a, b) => a.price - b.price ))
+        if(sort === 'name') {
+            setCurrentList(currentList.sort((a, b) => {
+                const nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase()
+                    if (nameA < nameB) 
+                    return -1
+                    if (nameA > nameB)
+                    return 1
+                    return 0
+            }))
         }
     }
-    
+
 
     const currentPage = () => {
         if(router.asPath.split('/')[router.asPath.split('/').length -1] === 'bestsaler') {
-            setGame(gamesList.games.filter(game => game.bestSeller))
-            setActiveSection("Лидеры продаж")
-        } else
+            setCurrentList(gamesList.games.filter(game => game.bestSeller))
+            setActiveGenre("Лидеры продаж")
+        } 
         if(router.asPath.split('/')[router.asPath.split('/').length -1] === 'popular&new') {
-            setGame(gamesList.games.filter(game => game.new))
-            setActiveSection("Популярные новинки")
+            setCurrentList(gamesList.games.filter(game => game.new))
+            setActiveGenre("Популярные новинки")
         }
     }
 
     return (
         <div className={styles.GameList} {...props}>
-            <SortSection activeGenre={setActiveGenre}/>
-            <h3>{activeSection}</h3>
+            <SortSection sort={setSort}/>
+            <h3>{activeGenre}</h3>
             {
-                game && game.map((game: Games, i: number) => (
-                    game.genre === activeGenre
-                    ?
+                 currentList && currentList.map((game: Games, i: number) => (
                         <GamesItem 
                         key={game.alias} 
                         game={game}
                         />
-                    : null
+                   
                 ))
             }
         </div>

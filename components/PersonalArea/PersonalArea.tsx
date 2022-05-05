@@ -7,7 +7,7 @@ import { useRouter } from "next/dist/client/router"
 import { useDispatch } from "react-redux"
 import { GameBasketAction } from "../../redux/types/gameBasketType"
 import { UserDataAction } from "../../redux/types/userDataType"
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Sad from './icon/sad.svg'
 
 

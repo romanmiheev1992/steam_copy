@@ -15,7 +15,15 @@ export const GamesList = ({...props}: GamesListProps): JSX.Element => {
     const [sortSet, setSortSet] = useState<boolean>(false)
     const [currentList, setCurrentList] = useState<Games[]>([])
 
-     useEffect(() => {
+    const [sort, setSort] = useState('')
+
+    useEffect(() => {
+        currentSort()
+        setSortSet(!sortSet)
+    }, [sort])
+    
+
+    useEffect(() => {
        setSortSet(true)
     }, [sortSet])
 
@@ -24,8 +32,24 @@ export const GamesList = ({...props}: GamesListProps): JSX.Element => {
     }, [currentList])
 
     useEffect(() => {
-        setCurrentList(gamesList.games.sort())
+        setCurrentList(gamesList.games)
     }, [])
+
+    const currentSort = () => {
+        if(sort === 'price') {
+            setCurrentList(currentList.sort((a, b) => a.price - b.price))
+        }
+        if(sort === 'name') {
+            setCurrentList(currentList.sort((a, b) => {
+                const nameA = a.name.toLowerCase(), nameB = b.name.toLowerCase()
+                    if (nameA < nameB) 
+                    return -1
+                    if (nameA > nameB)
+                    return 1
+                    return 0
+            }))
+        }
+    }
 
     const currentGenre = () => {
         if(router.asPath.split('/')[router.asPath.split('/').length -1] === 'action') {
@@ -37,10 +61,10 @@ export const GamesList = ({...props}: GamesListProps): JSX.Element => {
         } else
         if(router.asPath.split('/')[router.asPath.split('/').length -1] === 'roles') {
             setActiveGenre('Ролевые')
-        }else
+        } else
         if(router.asPath.split('/')[router.asPath.split('/').length -1] === 'simulator') {
             setActiveGenre('Симулятор')
-        }else
+        } else
         if(router.asPath.split('/')[router.asPath.split('/').length -1] === 'strategy') {
             setActiveGenre('Стратегия')
         }
@@ -50,20 +74,20 @@ export const GamesList = ({...props}: GamesListProps): JSX.Element => {
      return (
         <div className={styles.GameList} {...props}>
 
-             <SortSection activeGenre={setActiveGenre}/>
+            <SortSection activeGenre={setActiveGenre} sort={setSort}/>
+
             <h3>{activeGenre}</h3>
-                    {
-                        currentList && currentList.map((game: Games, i: number) => (
-                            game.genre === activeGenre 
-                            ?
-                            <GamesItem 
-                                key={game.alias} 
-                                game={game}
-                            />
-                            : null
-                        ))
-                    }   
-                    
+                {
+                    currentList && currentList.map((game: Games, i: number) => (
+                        game.genre === activeGenre 
+                        ?
+                        <GamesItem 
+                            key={game.alias} 
+                            game={game}
+                        />
+                        : null
+                    ))
+                }    
         </div>
     )
 }

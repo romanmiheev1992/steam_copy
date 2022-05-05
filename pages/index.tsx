@@ -17,7 +17,6 @@ import { MenuListAction } from "../redux/types/menuListType";
     dispatch({type: MenuListAction.ADD_MENU_LIST, payload: menu})
   }, [])
 
-
   return (
     <>
       <MainSlider/>

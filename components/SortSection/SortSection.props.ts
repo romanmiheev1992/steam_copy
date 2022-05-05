@@ -1,5 +1,6 @@
 import { DetailedHTMLProps, HTMLAttributes } from "react";
 
 export interface SortSectionProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-    activeGenre: any
+    activeGenre?: any,
+    sort?: any
 }

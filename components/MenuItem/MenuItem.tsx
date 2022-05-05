@@ -16,7 +16,6 @@ export const MenuItem = ({list, ...props}: MenuItemProps): JSX.Element => {
     const variants = {
         visible: {
             transition: {
-                // when: "afterChildren",
                 staggerChildren: 0.1,
                 marginBottom: 10,
             },
@@ -27,7 +26,6 @@ export const MenuItem = ({list, ...props}: MenuItemProps): JSX.Element => {
         hidden: {
             marginBottom: 0,
             height: 0,
-            // backgroundColor: 'hsl(212, 34%, 15%)'
         }
     }
 
@@ -97,48 +95,7 @@ export const MenuItem = ({list, ...props}: MenuItemProps): JSX.Element => {
         }  
         </motion.div> 
     </>
-        // <>
-        //     <li 
-        //     onClick={() => onClick()} 
-        //     className={cn(styles.HeadComponent, {
-        //         [styles.active]: active,
-        //         [styles.disactive]: !active
-        //     })}
-           
-           
-        //     > <span>{list.name.toUpperCase()}</span>
-        //     <Arrow className={cn(styles.Arrow, {
-        //         [styles.up]: active,
-        //         [styles.down]: !active,
-        //     })} />
-            
-        //     </li>
 
-        //     <ul className={cn(styles.MenuComponent, {
-        //         [styles.open]: active,
-        //         [styles.close]: !active
-        //     })}>
-        //     {   
-        //         list.block.map((item, i) => (
-        //             <Link 
-        //             key={item.alias} 
-        //             href={`${link()}${item.alias}`}
-        //             >
-        //                 <li 
-        //                     onClick={() => dispatch({type: MenuAction.HIDE_MENU})}
-        //                     className={cn(styles.listItem, {
-        //                         [styles.active]: active,
-        //                         [styles.disactive]: !active
-        //                     })}
-        //                 >{item.name}
-        //                 </li>
-        //             </Link>
-                    
-        //         ))
-             
-        //     }  
-        //     </ul> 
-        // </>
        
     )
 }
