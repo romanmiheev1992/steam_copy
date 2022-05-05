@@ -96,7 +96,7 @@ export const Form = ({toggle, ...props}: FormProps): JSX.Element => {
         >
             <Input value={form.email} onBlur={(e) => onBlur(e)} name='email' error={emailTouched && `${emailError}`} onChange={inputEmail} placeholder="Email"/>
             <Input value={form.password} onBlur={(e) => onBlur(e)} name='password' error={passwordTouched && `${passwordError }`} onChange={inputPassword} type={passwordToggle ? 'text' : 'password'} placeholder="Пароль"><Eye onClick={() => setPasswordToggle(!passwordToggle)} className={cn({[styles.hide]: !passwordToggle})}/></Input>
-            <Button type="submit">{!formToggle.formToggle || toggle ? `Зарегистрироваться` : 'Войти'}</Button>
+            <Button type="submit">{!formToggle.formToggle ? `Зарегистрироваться` : 'Войти'}</Button>
         </motion.form>
     )
 }

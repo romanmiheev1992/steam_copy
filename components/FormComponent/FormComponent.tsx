@@ -35,6 +35,8 @@ export const FormComponent = ({...props}: FormComponentProps): JSX.Element => {
             dispatch({type:  FormAction.INPUT_PASSWORD, payload: ''}) 
     }
 
+   
+
  
     return (
         <div className={styles.FormComponent} {...props}>
@@ -56,7 +58,7 @@ export const FormComponent = ({...props}: FormComponentProps): JSX.Element => {
                     </motion.div>
                     <Form toggle={adopToggle}/>
                     <div className={styles.AdopButton}>
-                    <Button type='primary' onClick={() => toggleForm()}>{!formToggle.formToggle ? 'Войти' : 'Зарегистрироваться'}</Button>
+                    <Button type='primary' onClick={toggleForm}>{!formToggle.formToggle ? 'Войти' : 'Зарегистрироваться'}</Button>
                     </div>
                 </>
 
