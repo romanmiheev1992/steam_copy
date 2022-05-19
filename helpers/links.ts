@@ -1,4 +1,4 @@
-export const mainLink: string = 'https://gamer-5f202-default-rtdb.firebaseio.com/-N0Rv0iwiDqxlqkW9JOa/'
+export const mainLink: string = 'https://backall-8404b-default-rtdb.firebaseio.com/-N2RVLuQ1w8Os629L0X6/'
 
 export const links = {
     games: `${mainLink}games.json`,
