@@ -1,27 +1,22 @@
-import axios from "axios";
+
 import { GetStaticProps } from "next";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { MainSlider, SalesSection, SortBlock } from "../components";
-import { links } from "../helpers/links";
-import { Games, Menu } from "../interfaces/dataInterfase";
+import { Link } from "../helpers/links";
 import { withLayout } from "../Layout/Layout";
-import { GameActions } from "../redux/types/gamesType";
-import { MenuListAction } from "../redux/types/menuListType";
+import { FilmsList, News, Stoсks, ImageHeader, Technologies} from "../components";
+import { FilmListInterface, MenuInterface, TechnologiesInterface } from "../interfaces/interfaces";
+import { ContactUs } from "../components/ContactUs/ContactUs";
+import axios from "axios";
 
- function Home({menu, games}: HomeProps): JSX.Element {
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch({type: GameActions.GET_GAMES_CONTENT, payload: games})
-    dispatch({type: MenuListAction.ADD_MENU_LIST, payload: menu})
-  }, [])
+const Home = ({menu, filmList, technologies, stocks, news, header}: HomeProps): JSX.Element => {
 
   return (
     <>
-      <MainSlider/>
-      <SalesSection />
-      <SortBlock/>
+      <ImageHeader/>
+      <FilmsList path="movie/"/>
+      <Technologies/>
+      <Stoсks/>
+      <News/>
+      <ContactUs/>
     </>
   );
 }
@@ -29,17 +24,33 @@ import { MenuListAction } from "../redux/types/menuListType";
 export default withLayout(Home)
 
 export const getStaticProps: GetStaticProps = async () => {
-  const {data: menu} = await axios.get<Menu[]>(links.menu)
-  const {data: games} = await axios.get<Games[]>(links.games)
+  const {data: menu} = await axios.get<MenuInterface[]>(Link.menu)
+  const {data: filmList} = await axios.get<FilmListInterface[]>(Link.filmList)
+  const {data: technologies} = await axios.get<TechnologiesInterface[]>(Link.tecnologies)
+  const {data: stocks} = await axios.get<TechnologiesInterface[]>(Link.stocks)
+  const {data: news} = await axios.get<TechnologiesInterface[]>(Link.news)
+  const {data: header} = await axios.get<string>(Link.mainImage)
+  
   return {
-      props: {
-        menu,
-        games
-      }
+    props: {
+      menu,
+      filmList,
+      technologies,
+      stocks,
+      news,
+      header,
+    }
   }
 }
 
-export interface HomeProps extends Record<string, unknown>{
-  menu: Menu[],
-  games: Games[]
+export interface HomeProps extends Record<string, unknown> {
+  menu: MenuInterface[],
+  filmList: FilmListInterface[],
+  technologies: TechnologiesInterface[],
+  stocks: TechnologiesInterface[],
+  news: TechnologiesInterface[],
+  header: string,
 }
+
+
+

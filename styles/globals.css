@@ -3,29 +3,13 @@ body {
 	margin: 0;
 	padding: 0;
 	color: var(--black);
-	background: var(--black-background);
+	background: #F5F6F8;
 	font-family: "Noto Sans", sans-serif;
-
-}
-body::-webkit-scrollbar {
-	width: 10px;
-	
-	background: var(--black);
-}
-
-body::-webkit-scrollbar-track {
-	background: var(--black-background);
-	
-}
-
-body::-webkit-scrollbar-thumb  {
-	background: var(--blue-dark);
-	border-radius: 15px;
-	padding: 2px;
 }
 
 a {
 	text-decoration: none;
+
 	color: inherit;
 }
 
@@ -33,27 +17,20 @@ a {
 	box-sizing: border-box;
 }
 
-ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-
 :root {
-	--black: #171a21;
+	--black: #3B434E;
+	--gray-light: #36414E;
+	--gray-dark: #2D3642;
+	--gray-black: #202731;
 	--white: white;
-	--blue-dark: #1b2838;
-	--black-background: #0E141B;
-	--green-sale: #4c6b22;
-	--gray-black: #2a475e;
-
-	--gray-light: #EBEBEB;
-	
+	--white-gray: rgb(255 255 255 / 60%);
 	--primary: #7653FC;
-	--primary-hover: #562ff5;
-	--red: #FC936D;
+	--primary-hover: #562FF5;
+	--red: #DC3474;
 	--green: #1DC37E;
 	--green-light: #C8F8E4;
 	--font-family: "Noto Sans", sans-serif;
-
+	--blue-light: #34D3FF;
+	--blue-very-light: #72DBF8;
+	--red-light: #FF8B8B;
 }

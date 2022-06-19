@@ -1,32 +1,31 @@
-import {Sidebar} from './Sidebar/Sidebar'
-import { Header } from './Header/Header'
-import {LayoutProps} from './Layout.props'
-import { FunctionComponent } from 'react'
+import { LayoutProps } from "./Layout.props";
 import styles from './Layout.module.css'
-import { Provider } from 'react-redux'
-import { store } from '../redux/store/store'
+import { Sidebar } from "./Sidebar/Sidebar";
+import { FunctionComponent } from "react";
+import { IAppContext, AppContextProvider } from "../appContext/MenuContext";
+import { Footer } from "./Footer/Footer";
 
-export const Layout = ({children}: LayoutProps): JSX.Element => {
 
+export const Layout = ({children}: LayoutProps) => {
     return (
         <div className={styles.Layout}>
-            <Header/>
             <Sidebar/>
-            <div>
+            <div className={styles.Body}>
                 {children}
-            </div>
+            </div>   
+            <Footer/>
         </div>
     )
 }
 
-export const withLayout = <T extends Record<string, unknown>> (Component: FunctionComponent<T>) => {
-    return function withLayoutComponent(props: T): JSX.Element {
-        return(
-            <Provider store={store}>
+export const withLayout = <T extends Record<string, unknown> & IAppContext> (Component: FunctionComponent<T>) => {
+    return function withLayoutComponent (props: T): JSX.Element {
+        return (
+            <AppContextProvider header={props.header} menu={props.menu} filmList={props.filmList} technologies={props.technologies} stocks={props.stocks} news={props.news} cinemas={props.cinemas}>
                 <Layout>
                     <Component {...props} />
-                </Layout>
-            </Provider>
+                </Layout>  
+            </AppContextProvider>
             
         )
     }

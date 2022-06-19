@@ -1,102 +1,120 @@
-import { Button } from "../Button/Button"
-import { Input } from "../Input/Input"
 import { FormProps } from "./Form.props"
 import styles from './Form.module.css'
-import { useSelectorHook } from "../../hooks/useSelectorHook"
-import { useDispatch } from "react-redux"
-import { FormAction } from "../../redux/types/formType"
-import { ChangeEvent, FocusEventHandler, FormEvent, useEffect, useState } from "react"
-import Eye from './icon/eye.svg'
+import { SignIn } from "./SignIn/SignIn"
+import { SignUp } from "./SignUp/SignUp"
+import { useEffect, useState } from "react"
+import { Button } from ".."
+import { useRouter } from "next/dist/client/router"
+import axios from "axios"
 import cn from 'classnames'
-import { motion } from 'framer-motion'
-import { GameBasketAction } from "../../redux/types/gameBasketType"
-import { StatusAction } from "../../redux/types/statusType"
+import Close from './icon/close.svg'
+import { Link } from "../../helpers/links"
 
+export const Form = ({className, ...props}: FormProps):JSX.Element => {
+    const router = useRouter()
 
-export const Form = ({toggle, ...props}: FormProps): JSX.Element => {
-    const dispatch = useDispatch()
-    const {form, status, formToggle} = useSelectorHook(state => state)
-    const [passwordToggle, setPasswordToggle] = useState<boolean>(false)
-    const [emailTouched, setEmailTouched] = useState<boolean>(false)
-    const [passwordTouched, setPasswordTouched] = useState<boolean>(false)
-    const [emailError, setEmailError] = useState<string>('Поле не может быть пустым')
-    const [passwordError, setPasswordError] = useState<string>('Поле не может быть пустым')
-    
+    const [formToggle, setFormToggle] = useState<boolean>(true)
+    const [mount, setMount] = useState(false)
+    const [popup, setPopup] = useState(false)
+    const [orderUser, setOrderUser] = useState({})
+
     useEffect(() => {
-        dispatch({type: FormAction.INPUT_EMAIL, payload: '' })
-        dispatch({type: FormAction.INPUT_PASSWORD, payload: '' })
-    }, [status])
-
-
-    const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        dispatch({type: GameBasketAction.DELETE_ALL_GAMES})
-        
-        if(emailTouched && passwordTouched && emailError === '' && passwordError === '' && !formToggle.formToggle && form.email && form.password) {
-            dispatch({type: FormAction.FORM_SUBMIT})
-            dispatch({type: StatusAction.DELETE_STATUS})
-        } else if(emailTouched && passwordTouched && emailError === '' && passwordError === '' && formToggle.formToggle && form.email && form.password) {
-            dispatch({type: FormAction.FORM_SIGN_UP})
-            dispatch({type: StatusAction.DELETE_STATUS})
-        } else if(form.email === '' || form.password === ''){
-            setEmailError('Заполните данные корректно')
-            setPasswordError('Заполните данные корректно')
-        } 
-    }
-
-    const onBlur = (e) => {
-        switch(e.target.name) {
-            case "email":
-                setEmailTouched(true)
-                break;
-            case "password":
-                setPasswordTouched(true)
-                break;
+        if(localStorage.getItem('auth')) {
+            setMount(true)
         }
+        order()
+    }, [])
+
+    const order = async () => {
+        const response =  await axios.get<string>(Link.order)
+        .then(res => setOrderUser(res.data))
     }
 
-    const inputEmail = (e: ChangeEvent<HTMLInputElement>) => {
-        dispatch({type: FormAction.INPUT_EMAIL, payload: e.target.value })
-        const emailVal = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        if(emailVal.test(String(form.email).toLowerCase()) ) {
-            setEmailError('')
-        } else {
-            setEmailError('Введен некорректный email')
-        }
+    const exit = () => {
+        localStorage.removeItem('auth')
+        localStorage.removeItem('user')
+        router.push({
+            pathname: '/'
+        })
     }
 
-    const inputPassword = (e: ChangeEvent<HTMLInputElement>) => {
-        dispatch({type: FormAction.INPUT_PASSWORD, payload: e.target.value })
-        if(form.password.length < 6) {
-            setPasswordError('Паполь не менее 6 символов')
-        } else {
-            setPasswordError('')
-        }
-    }
-
-    const variants = {
-        reg: {
-            x: 40,
-            y: -150,
-        },
-        in: {
-            x: -280,
-            y: -150,
-        }
-    }
-
+    const popUpIcon = () => (
+        popup
+        ? <div 
+            className={cn(className, {
+                [styles.popUpIcon]: popup
+            })}
+        >
+           Вы успешно зарегистрировались!
+           <button 
+                className={styles.closePopUp}
+                onClick={() => setPopup(false)}
+            >
+               <Close/>
+           </button>
+        </div>
+        : null
+    )
 
     return (
-        <motion.form 
-            variants={variants}
-            initial={'in'}
-            animate={!formToggle.formToggle ? 'in' :'reg'}
-            className={styles.Form}
-            onSubmit={(e) => onSubmit(e)}
+      
+        <div 
+            className={styles.FormWrapper} 
+            {...props}
         >
-            <Input value={form.email} onBlur={(e) => onBlur(e)} name='email' error={emailTouched && `${emailError}`} onChange={inputEmail} placeholder="Email"/>
-            <Input value={form.password} onBlur={(e) => onBlur(e)} name='password' error={passwordTouched && `${passwordError }`} onChange={inputPassword} type={passwordToggle ? 'text' : 'password'} placeholder="Пароль"><Eye onClick={() => setPasswordToggle(!passwordToggle)} className={cn({[styles.hide]: !passwordToggle})}/></Input>
-            <Button type="submit">{!formToggle.formToggle ? `Зарегистрироваться` : 'Войти'}</Button>
-        </motion.form>
+            {
+                mount
+                ?
+                    <div className={styles.personalArea}>
+                        <h2>Личный кабинет</h2>
+                        <p>Пользователь:<span> {localStorage.getItem('user')}</span></p>
+                        <p>Заказ:</p> 
+                        { orderUser && Object.keys(orderUser).map((item, i) => {
+                            if(orderUser[item].email === localStorage.getItem('user')) {
+                                return (
+                                    <div key={i} className={styles.orderBlock}>
+                                        <p className={styles.film}>Кино: {orderUser[item].name}</p>
+                                        <p className={styles.hall}>Зал: {orderUser[item].hall}</p>
+                                        <p className={styles.time}>Время: {orderUser[item].time}</p>
+                                        <p className={styles.tickets}> Билеты:</p>
+                                        <div className={styles.orderSeatsList}>
+                                            {orderUser[item].seats.map((seat, i) => (
+                                                <div className={styles.orderBlockSeats} key={i}>
+                                                    <p>ряд: {seat.row}</p>
+                                                    <p>место: {seat.seat}</p>  
+                                                </div>
+                                            ))}
+                                        </div>
+                                  
+                                    </div> 
+                                )
+                            }
+                        })
+                        }
+                        <Button 
+                            type='submit'
+                            onClick={() => exit()}
+                        >Выход</Button>
+                    </div>
+                :
+                <>
+                    <div className={styles.formToggle}>
+                        { popUpIcon()}
+                        <h2
+                            onClick={() => setFormToggle(true)}
+                        >Регистрация</h2>
+                        <h2
+                            onClick={() => setFormToggle(false)}
+                        >Вход</h2>
+                    </div>
+                    {
+                        formToggle
+                        ? <SignIn popup={setPopup} toggle={setFormToggle}/>
+                        : <SignUp setMount={setMount} />
+                    }
+                </>
+            }
+        </div>  
     )
 }
+

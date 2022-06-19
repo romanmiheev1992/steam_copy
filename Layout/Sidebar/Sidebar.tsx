@@ -1,55 +1,54 @@
-import cn from 'classnames'
+import { SidebarProps } from "./Sidebar.props";
 import styles from './Sidebar.module.css'
-import { useDispatch } from 'react-redux'
-import { SidebarProps } from './Sidebar.props'
-import { MenuToggle } from '../../components'
-import { MenuAction } from '../../redux/types/menuType'
-import { useSelectorHook } from '../../hooks/useSelectorHook'
-import { MenuItem } from '../../components'
-import { motion } from 'framer-motion'
+import { MenuItem, MenuToggle } from "../../components";
+import News from './icons/news2.svg'
+import Star from './icons/star2.svg'
+import Cinema from './icons/cinema2.svg'
+import Sign from './icons/user.svg'
+import Label from './icons/3d-glasses.svg'
+import { useContext, useState} from "react"
+import { AppContext, IAppContext } from "../../appContext/MenuContext"
+import cn from 'classnames'
+import { MenuInterface } from "../../interfaces/interfaces"
+import Link from "next/link";
 
 
-export const Sidebar = ({...props}: SidebarProps): JSX.Element => {
-    const {menuToggle, menuList} = useSelectorHook(state => state)
-    const dispatch = useDispatch()
 
+export const Sidebar = ({className, ...props}: SidebarProps):JSX.Element => {
 
-    const variants = {
-        show: {
-            x: 0,
-        },
-        hide: {
-            x: -500
-        }
-
-    }
-
-    const blackBlock = () => <div onClick={() => dispatch({type: MenuAction.HIDE_MENU})} className={styles.BlackBlock}></div>
+    const [toggle, setToggle] = useState<boolean>(false)
+    const {menu} = useContext<IAppContext>(AppContext)
+    const items = [<Cinema/>, <Star/>, <News/>, <Sign/>]
 
     return (
-        <>
-            <motion.div 
-                className={styles.Sidebar}
-                initial={"hide"}
-                variants={variants}
-                animate={ menuToggle.toggleMenu ? "show" : "hide"}
-            >
-                <MenuToggle type='close'/>
-                <ul className={styles.MainList}>
-                    {
-                        menuList.menuList && menuList.menuList.map(menuItem => (
-                            <MenuItem key={menuItem.name} list={menuItem}/> 
-                        ))
-                    }   
-                </ul>
-            </motion.div>
-            {
-                menuToggle.toggleMenu
-                ? blackBlock()
-                : null
-            }
-           
-        </>
-       
+        <div className={cn(styles.Sidebar)} {...props}>
+            <MenuToggle toggle={toggle} onClick={() => setToggle(!toggle)}/>
+            <div className={styles.Label}>
+                <Link href={'/'}>
+                    <a>
+                        <Label/>
+                    </a>
+                </Link>
+                <span>СТАР СИНЕМА</span> 
+            </div>
+            <div className={cn(className, styles.menuWrapper, {
+                [styles.menuOpen]: toggle,
+                [styles.menuClose]: !toggle
+            }) }>
+                {   
+                   menu && menu.map((m: MenuInterface, i: number) => {
+                        return (
+                                    <MenuItem 
+                                        onClick={() => setToggle(!toggle)}
+                                        key={i}
+                                        img={items[i]}
+                                        title={m.title}
+                                        alias={m.alias}
+                                    />   
+                        )
+                    })
+                }
+            </div>    
+        </div> 
     )
 }

@@ -1,7 +1,8 @@
-import { DetailedHTMLProps, HTMLAttributes } from "react";
-import { Games, Menu } from "../../interfaces/dataInterfase";
+import { DetailedHTMLProps, HTMLAttributes, ReactNode } from "react";
 
 export interface MenuItemProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-    list: Menu
-    
+    title?: string,
+    img: ReactNode
+    alias: string;
 }
+

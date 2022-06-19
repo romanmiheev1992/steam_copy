@@ -1,51 +1,34 @@
 import axios from "axios"
 import { GetStaticProps } from "next"
-import { useEffect } from "react"
-import { useDispatch } from "react-redux"
-import { FormComponent } from "../components"
-import { links } from "../helpers/links"
-import { Games, Menu } from "../interfaces/dataInterfase"
+import { Form } from "../components"
+import { Link } from "../helpers/links"
+import { MenuInterface } from "../interfaces/interfaces"
 import { withLayout } from "../Layout/Layout"
-import { GameActions } from "../redux/types/gamesType"
-import { MenuListAction } from "../redux/types/menuListType"
 
 
-
-
-const Sign = ({games, menu}: SignProps): JSX.Element => {
-
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-      dispatch({type: GameActions.GET_GAMES_CONTENT, payload: games})
-      dispatch({type: MenuListAction.ADD_MENU_LIST, payload: menu})
-    }, [])
-
-
+const Sign = ({menu, header}: SignProps):JSX.Element => {
+    
     return (
         <>
-            <FormComponent/>
+            <Form/>
         </>
     )
 }
 
 export default withLayout(Sign)
 
-
 export const getStaticProps: GetStaticProps = async () => {
-
-    const {data: menu} = await axios.get<Menu[]>(links.menu)
-    const {data: games} = await axios.get<Games[]>(links.games)
+    const {data: menu} = await axios.get<MenuInterface[]>(Link.menu)
+    const {data: header} = await axios.get<string>(Link.mainImage)
     return {
-      props: {
-        menu,
-        games
+        props: {
+            menu,
+            header
+        }
     }
-  }
 }
 
-
 export interface SignProps extends Record<string, unknown>{
-    menu: Menu[],
-    games: Games[]
-  }
+    menu: MenuInterface[],
+    header: string
+}
