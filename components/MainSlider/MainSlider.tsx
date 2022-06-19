@@ -23,6 +23,7 @@ export const MainSlider = ({...props}: MainSliderProps): JSX.Element => {
         onSwipedRight: () => slideNum <= 0 ?  setSlideNum(recomendedList.length - 1) : setSlideNum(slideNum - 1),
     })
 
+
     const onMouseEnter = (e) => {
         setImageNum(e._targetInst.key)
     }
