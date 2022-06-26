@@ -1,4 +1,4 @@
-const mainLink = 'https://back-all-default-rtdb.europe-west1.firebasedatabase.app/-N4vKf52i6ENxjdkEDfB'
+const mainLink = 'https://back-all-default-rtdb.europe-west1.firebasedatabase.app/-N4vKngFttc7slM-59r8'
 
 export const Link = {
     menu: `${mainLink}/menu.json`,
